@@ -1,0 +1,8 @@
+
+a	php:S1131"@Remove the useless trailing whitespaces at the end of this line.(ˆ’èĞşÿÿÿÿ8Ûü–÷1
+lphp:S103Í"KSplit this 122 characters long line (which is greater than 120 authorized).(òİîÚıÿÿÿÿ8Üü–÷1
+gphp:S103é"KSplit this 148 characters long line (which is greater than 120 authorized).(¼ã„°8Üü–÷1
+R	php:S6437"6Revoke and change this password, as it is compromised.(‰ì¶§8Üü–÷1
+X	php:S6437¼"6Revoke and change this password, as it is compromised.(õôŸ°ıÿÿÿÿ8Üü–÷1
+d	php:S1192Î"GDefine a constant instead of duplicating this literal "</div>" 7 times.(€†šá8Üü–÷1
+i	php:S1192Ô"LDefine a constant instead of duplicating this literal "</td></tr>" 20 times.(ŸßçÏ8İü–÷1

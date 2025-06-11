@@ -1,0 +1,363 @@
+/* 접근성을 고려한 숨김 스타일 */
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px); /* 화면에 표시되지 않도록 하는 클립 설정 */
+  clip-path: inset(50%); /* 클립 경로를 사용하여 숨김 */
+  width: 1px; /* 너비 1px로 설정 */
+  height: 1px; /* 높이 1px로 설정 */
+  margin: -1px; /* 마진을 이용해 숨김 */
+  overflow: hidden; /* 오버플로우를 숨김 */
+  padding: 0; /* 패딩을 0으로 설정 */
+  position: absolute; /* 절대 위치로 설정하여 숨김 */
+}
+
+/* 전역 스타일 */
+* {
+  font-family: Roboto, sans-serif; /* 모든 요소에 대한 글꼴 설정 */
+  box-sizing: border-box; /* 요소 크기 계산 시 패딩과 테두리를 포함하는 설정 */
+  user-select: none; /* 사용자 선택 비허용 */
+  -webkit-user-drag: none; /* 웹킷 브라우저에서 드래그 비허용 */
+}
+
+/* 헤더 스타일 */
+.header-wrapper {
+  border-bottom: 1px solid #bdbdbd; /* 하단 테두리 설정 */
+  padding: 5px 10px; /* 내부 여백 설정 */
+}
+
+.header {
+  display: flex; /* Flexbox 사용 */
+  flex-direction: row; /* 가로 방향으로 나열 */
+  height: 50px; /* 높이 50px로 설정 */
+}
+
+.img-title {
+  object-fit: cover; /* 이미지를 컨테이너에 맞게 채우기 */
+  width: 100%; /* 너비 100%로 설정 */
+  height: 100%; /* 높이 100%로 설정 */
+}
+
+/* 메모 컨테이너 스타일 */
+.memo-container {
+  display: flex; /* Flexbox 사용 */
+  flex-direction: column; /* 세로 방향으로 나열 */
+  align-items: center; /* 가로 축 가운데 정렬 */
+  justify-content: center; /* 세로 축 가운데 정렬 */
+  margin: 30px 0px 60px 0px; /* 마진 설정 */
+  width: 100%; /* 너비 100%로 설정 */
+}
+
+/* 섹션 입력 스타일 */
+.section-input {
+  display: flex; /* Flexbox 사용 */
+  flex-direction: column; /* 세로 방향으로 나열 */
+  align-items: center; /* 가로 축 가운데 정렬 */
+  width: 600px; /* 너비 600px로 설정 */
+  border-radius: 7px; /* 테두리 반경 설정 */
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 7px; /* 그림자 설정 */
+  overflow: hidden; /* 오버플로우를 숨김 */
+  background-color: white; /* 배경색 설정 */
+}
+
+/* 입력 텍스트 컨테이너 스타일 */
+.input-text-container {
+  background: transparent; /* 투명 배경 설정 */
+  width: 100%; /* 너비 100%로 설정 */
+}
+
+/* 입력 제목 및 내용 스타일 */
+.input-title, .input-content {
+  width: 100%; /* 너비 100%로 설정 */
+  height: 100%; /* 높이 100%로 설정 */
+  font-size: 1em; /* 글꼴 크기 1em으로 설정 */
+  padding: 15px 15px; /* 패딩 설정 */
+  background: transparent; /* 투명 배경 설정 */
+}
+
+.input-title {
+  display: none; /* 제목 숨김 */
+  font-weight: bold; /* 글꼴 굵게 설정 */
+}
+/* 입력 버튼 컨테이너 스타일 */
+.input-btn-container {
+  width: 100%; /* 너비 100%로 설정 */
+  padding: 5px 15px; /* 패딩 설정 */
+  display: none; /* 초기에는 보이지 않도록 숨김 */
+  flex-direction: row; /* 가로 방향으로 나열 */
+  align-items: center; /* 가로 축 가운데 정렬 */
+  justify-content: right; /* 가로 축 우측 정렬 */
+  font-size: 1rem; /* 글꼴 크기 1rem으로 설정 */
+}
+
+/* 입력 버튼 스타일 */
+.input-btn-container button {
+  width: 44px; /* 너비 44px로 설정 */
+  height: 44px; /* 높이 44px로 설정 */
+  padding: 12px; /* 패딩 설정 */
+  border-radius: 50%; /* 50%의 원형 모양 설정 */
+}
+
+/* 입력 버튼 호버 효과 스타일 */
+.input-btn-container button:hover {
+  background-color: #eeeeee; /* 호버 시 배경색 변경 */
+  background-clip: border-box; /* 배경색이 경계 상자에 적용되도록 설정 */
+}
+
+/* 버튼 팔레트 아이콘 스타일 */
+.btn-palette {
+  background: url('../img/palette.svg') no-repeat center/contain content-box; /* 배경 이미지 설정 */
+}
+
+/* 버튼 리프레시 아이콘 스타일 */
+.btn-refresh {
+  background: url('../img/refresh.svg') no-repeat center/contain content-box; /* 배경 이미지 설정 */
+}
+
+/* 버튼 완료 아이콘 스타일 */
+.btn-done {
+  background: url('../img/done.svg') no-repeat center/contain content-box; /* 배경 이미지 설정 */
+}
+
+/* 컬러 피커 스타일 */
+.color-picker {
+  display: none; /* 초기에는 보이지 않도록 숨김 */
+  flex-direction: row; /* 가로 방향으로 나열 */
+  justify-content: space-around; /* 가로 축 간격 동일하게 정렬 */
+  align-items: center; /* 가로 축 가운데 정렬 */
+  width: 300px; /* 너비 300px로 설정 */
+  height: 50px; /* 높이 50px로 설정 */
+  padding: 0px 10px; /* 패딩 설정 */
+  background-color: #eeeeee; /* 배경색 설정 */
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 3px; /* 그림자 설정 */
+  position: absolute; /* 절대 위치로 설정 */
+  border-radius: 10px; /* 테두리 반경 설정 */
+  z-index: 999; /* 다른 요소 위에 표시되도록 설정 */
+}
+
+/* 컬러 피커 버튼 스타일 */
+.color-picker button {
+  width: 35px; /* 너비 35px로 설정 */
+  height: 35px; /* 높이 35px로 설정 */
+  border-radius: 50%; /* 50%의 원형 모양 설정 */
+}
+
+/* 컬러 피커 버튼 호버 효과 스타일 */
+.color-picker button:hover {
+  border: 2px solid #777777; /* 호버 시 테두리 추가 */
+}
+
+/* 특정 아이디에 대한 컬러 설정 */
+#btn-color-white {
+  background: white; /* 흰색 배경색 설정 */
+}
+
+#btn-color-red {
+  background-color: #f28b82; /* 빨간색 배경색 설정 */
+}
+/* 컬러 피커 버튼 추가 */
+#btn-color-yellow {
+  background-color: #fff475; /* 노란색 배경색 설정 */
+}
+#btn-color-green {
+  background-color: #ccff90; /* 초록색 배경색 설정 */
+}
+#btn-color-blue {
+  background-color: #cbf0f8; /* 파란색 배경색 설정 */
+}
+#btn-color-purple {
+  background-color: #d7aefb; /* 보라색 배경색 설정 */
+}
+
+/* 선택된 컬러 피커 버튼 스타일 */
+.color-selected {
+  border: 2px solid #777777; /* 테두리 추가 */
+}
+
+/* 섹션 디스플레이 스타일 */
+.section-display {
+  width: 1550px; /* 너비 1550px로 설정 */
+  display: flex; /* Flexbox 사용 */
+  flex-wrap: wrap; /* 줄 바꿈 설정 */
+  flex-direction: row; /* 가로 방향으로 나열 */
+  margin-top: 30px; /* 상단 여백 설정 */
+  gap: 10px; /* 요소 간격 설정 */
+}
+
+/* 디스플레이 메모 스타일 */
+.display-memo {
+  width: 250px; /* 너비 250px로 설정 */
+  height: fit-content; /* 컨텐츠 높이에 맞게 설정 */
+  min-height: 100px; /* 최소 높이 100px로 설정 */
+  border-radius: 5px; /* 테두리 반경 설정 */
+  border: 1px solid #cccccc; /* 테두리 설정 */
+  padding: 10px; /* 내부 여백 설정 */
+  word-break: break-all; /* 단어가 행을 벗어날 때 줄 바꿈 설정 */
+}
+
+/* 디스플레이 메모 호버 효과 스타일 */
+.display-memo:hover {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; /* 그림자 효과 추가 */
+}
+
+/* 에디트 모달 스타일 */
+#edit-modal {
+  visibility: hidden; /* 초기에는 보이지 않도록 설정 */
+  position: fixed; /* 고정 위치 설정 */
+  top: 0; /* 화면 맨 위에 위치 */
+  left: 0; /* 화면 왼쪽에 위치 */
+  width: 100%; /* 전체 너비 */
+  height: 100%; /* 전체 높이 */
+  display: flex; /* Flexbox 사용 */
+  align-items: center; /* 세로 축 가운데 정렬 */
+  justify-content: center; /* 가로 축 가운데 정렬 */
+  z-index: 1; /* 다른 요소 위에 표시되도록 설정 */
+  background-color: rgba(0, 0, 0, 0.4); /* 배경색 설정 */
+}
+
+/* 에디트 모달 박스 스타일 */
+#edit-modal-box {
+  position: absolute; /* 절대 위치 설정 */
+  top: 50%; /* 화면 상단에서 절반 높이로 위치 */
+  left: 50%; /* 화면 좌측에서 절반 너비로 위치 */
+  transform: translate(-50%, -50%); /* 중앙 정렬을 위한 변형 설정 */
+  background-color: white; /* 배경색 설정 */
+  width: 500px; /* 너비 500px로 설정 */
+  border-radius: 5px; /* 테두리 반경 설정 */
+  border: solid 2px #777777; /* 테두리 설정 */
+  padding: 10px 15px 15px 15px; /* 패딩 설정 */
+}
+
+/* 모달 헤더 스타일 */
+#modal-header {
+  height: 44px; /* 높이 44px로 설정 */
+  display: flex; /* Flexbox 사용 */
+  flex-direction: row; /* 가로 방향으로 나열 */
+  align-items: center; /* 세로 축 가운데 정렬 */
+  justify-content: center; /* 가로 축 가운데 정렬 */
+  position: relative; /* 상대 위치 설정 */
+}
+
+/* 에디트 모달 닫기 버튼 스타일 */
+#btn-edit-close {
+  width: 44px; /* 너비 44px로 설정 */
+  height: 44px; /* 높이 44px로 설정 */
+  padding: 12px; /* 패딩 설정 */
+  border-radius: 50%; /* 50%의 원형 모양 설정 */
+  position: absolute; /* 절대 위치 설정 */
+  right: 0; /* 오른쪽에 위치 */
+  top: 0; /* 상단에 위치 */
+  background: url('../img/close.svg') no-repeat center/contain content-box; /* 배경 이미지 설정 */
+}
+/* 에디트 닫기 버튼 호버 효과 스타일 */
+#btn-edit-close:hover {
+  background-color: #eeeeee; /* 호버 시 배경색 변경 */
+  background-clip: border-box; /* 배경색이 경계 상자에 적용되도록 설정 */
+}
+
+/* 모달 제목 스타일 */
+#modal-title {
+  font-weight: 500; /* 글꼴 굵기 500으로 설정 */
+  font-size: 1rem; /* 글꼴 크기 1rem으로 설정 */
+  color: #999999; /* 글자색 설정 */
+}
+
+/* 에디트 제목 입력 필드 스타일 */
+#edit-title {
+  display: block; /* 블록 레벨 요소로 표시 */
+  padding: 0; /* 패딩 초기화 */
+  margin-bottom: 10px; /* 하단 여백 설정 */
+}
+
+/* 에디트 내용 입력 필드 스타일 */
+#edit-content {
+  padding: 0; /* 패딩 초기화 */
+}
+
+/* 에디트 모달 버튼 컨테이너 스타일 */
+#edit-modal-box .input-btn-container {
+  display: flex; /* Flexbox 사용 */
+  padding: 0; /* 패딩 초기화 */
+}
+
+/* 메모 삭제 버튼 스타일 */
+.btn-delete-memo {
+  visibility: hidden; /* 초기에는 보이지 않도록 설정 */
+  width: 44px; /* 너비 44px로 설정 */
+  height: 44px; /* 높이 44px로 설정 */
+  padding: 12px; /* 패딩 설정 */
+  border-radius: 50%; /* 50%의 원형 모양 설정 */
+  float: right; /* 우측에 위치 */
+  background: url('../img/delete.svg') no-repeat center/contain content-box; /* 배경 이미지 설정 */
+}
+
+/* 메모 삭제 버튼 호버 효과 스타일 */
+.btn-delete-memo:hover {
+  background-color: #eeeeee; /* 호버 시 배경색 변경 */
+  background-clip: border-box; /* 배경색이 경계 상자에 적용되도록 설정 */
+}
+
+/* 페이지 상단으로 스크롤 버튼 스타일 */
+#btn-top-scroll {
+  display: none; /* 초기에는 보이지 않도록 설정 */
+  position: fixed; /* 고정 위치 설정 */
+  bottom: 20px; /* 화면 하단에서 20px 떨어진 위치 */
+  right: 30px; /* 화면 우측에서 30px 떨어진 위치 */
+  z-index: 1; /* 다른 요소 위에 표시되도록 설정 */
+  padding: 10px; /* 패딩 설정 */
+  width: 44px; /* 너비 44px로 설정 */
+  height: 44px; /* 높이 44px로 설정 */
+  border-radius: 50%; /* 50%의 원형 모양 설정 */
+  background: url('../img/up.svg') no-repeat center/contain; /* 배경 이미지 설정 */
+  background-color: #bdbdbd; /* 배경색 설정 */
+}
+
+/* 페이지 상단으로 스크롤 버튼 호버 효과 스타일 */
+#btn-top-scroll:hover {
+  border: 2px solid #777777; /* 호버 시 테두리 추가 */
+}
+
+/* 미디어 쿼리: 화면 너비에 따라 스타일 변경 */
+@media screen and (max-width: 1600px) {
+  .section-display {
+    width: 1290px; /* 화면 너비에 따라 조정 */
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  .section-display {
+    width: 1030px; /* 화면 너비에 따라 조정 */
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .section-display {
+    width: 770px; /* 화면 너비에 따라 조정 */
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .section-input {
+    width: 500px; /* 화면 너비에 따라 조정 */
+  }
+  .section-display {
+    width: 510px; /* 화면 너비에 따라 조정 */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    height: 40px; /* 화면 너비에 따라 조정 */
+  }
+  .section-input {
+    width: 90%; /* 화면 너비에 따라 조정 */
+  }
+  .section-display {
+    width: 90%; /* 화면 너비에 따라 조정 */
+  }
+  .display-memo {
+    width: 100%; /* 화면 너비에 따라 조정 */
+  }
+  #edit-modal-box {
+    width: 90%; /* 화면 너비에 따라 조정 */
+  }
+}
+

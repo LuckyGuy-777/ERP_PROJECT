@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WH memo</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/memo_style.css">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+<div class="header-wrapper">
+  <header class="header">
+    <h1 id="title">
+      <!-- 사이트 제목 이미지 -->
+      <a href="main.php"><img src="img/WH.png" alt="WH memo" class="img-title"></a>
+    </h1>
+  </header>
+</div>
+<div class="main-wrapper">
+  <main class="memo-container"> <!-- 메모 입력 섹션 -->
+    <section class="section-input">
+      <h2 class="a11y-hidden">메모 입력창</h2>
+      <textarea rows="1" class="input-title" placeholder="제목"></textarea> <!-- 메모 제목 입력란 -->
+      <textarea rows="1" class="input-content" placeholder="메모 작성..."></textarea><!-- 메모 내용 입력란 -->
+      <!-- 입력 관련 버튼들 -->
+      <div class="input-btn-container">
+        <button class="btn-palette" type="button"><span class="a11y-hidden">배경색 변경 버튼</span></button>
+        <button class="btn-refresh" type="button"><span class="a11y-hidden">작성 중인 메모 초기화 버튼</span></button>
+        <button class="btn-done" type="button"><span class="a11y-hidden">메모 저장 버튼</span></button>
+      </div>
+    </section>
+    <!-- 메모 표시 섹션 -->
+    <section class="section-display">
+    </section>
+  </main>
+</div>
+<!-- 메모 수정 모달 -->
+<div id="edit-modal">
+  <section id="edit-modal-box">
+    <!-- 모달 헤더 -->
+    <div id="modal-header">
+      <h2 id="modal-title">[메모 수정]</h2>
+    </div>
+    <!-- 메모 수정 입력란 -->
+    <textarea rows="1" class="input-title" placeholder="제목" id="edit-title"></textarea>
+    <textarea rows="1" class="input-content" placeholder="메모 작성..." id="edit-content"></textarea>
+    <!-- 메모 수정 관련 버튼들 -->
+    <div class="input-btn-container">
+      <button class="btn-palette" type="button" id="btn-edit-color"><span class="a11y-hidden">배경색 변경 버튼</span></button>
+      <button class="btn-refresh" type="button" id="btn-edit-refresh"><span class="a11y-hidden">작성 중인 메모 초기화 버튼</span></button>
+      <button class="btn-done" type="button" id="btn-edit-done"><span class="a11y-hidden">메모 수정 완료 버튼</span></button>
+    </div>
+    <!-- 메모 수정 모달 닫기 버튼 -->
+    <button id="btn-edit-close"type="button"><span class="a11y-hidden">수정 창 닫기 버튼</span></button>
+  </section>
+</div>
+<!-- 메모 수정시 배경색 선택 팔레트 -->
+<div class="color-picker" id="edit-color-picker">
+  <!-- 배경색 선택 버튼들 -->
+  <button class="color-selected" id="btn-color-white" type="button"></button>
+  <button id="btn-color-red" type="button"></button>
+  <button id="btn-color-yellow" type="button"></button>
+  <button id="btn-color-green" type="button"></button>
+  <button id="btn-color-blue" type="button"></button>
+  <button id="btn-color-purple" type="button"></button>
+</div>
+<button onClick="toTopScroll()" id="btn-top-scroll"></button><!-- 페이지 상단 이동 버튼 -->
+<script src="js/memo.js"></script><!-- 메모 스크립트 -->
+</body>
+</html>

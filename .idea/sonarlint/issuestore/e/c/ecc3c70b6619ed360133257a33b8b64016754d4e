@@ -1,0 +1,50 @@
+
+Z	Web:S5254"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷Ãûÿÿÿÿ
+HWeb:TableWithoutCaptionCheck†" Add a description to this table.(é–Å&
+NWeb:TableWithoutCaptionCheck’" Add a description to this table.(Æõ¾éûÿÿÿÿ
+@	Web:S5256’"%Add "<th>" headers to this "<table>".(Æõ¾éûÿÿÿÿ
+NWeb:TableWithoutCaptionCheck¢" Add a description to this table.(öµº™üÿÿÿÿ
+@	Web:S5256¢"%Add "<th>" headers to this "<table>".(öµº™üÿÿÿÿ
+NWeb:TableWithoutCaptionCheck¤" Add a description to this table.(Ì°Œùÿÿÿÿ
+NWeb:TableWithoutCaptionCheck»" Add a description to this table.(²—‰…øÿÿÿÿ
+@	Web:S5256»"%Add "<th>" headers to this "<table>".(²—‰…øÿÿÿÿ
+NWeb:TableWithoutCaptionCheck½" Add a description to this table.(Ì°Œùÿÿÿÿ
+`javascript:S1481‹"<Remove the declaration of the unused 'monthlyView' variable.(²”é…8Ö¬âË£1
+]javascript:S1854‹"9Remove this useless assignment to variable "monthlyView".(²”é…8Ö¬âË£1
+_javascript:S1481";Remove the declaration of the unused 'weeklyView' variable.(Û¦–„8Ö¬âË£1
+\javascript:S1854"8Remove this useless assignment to variable "weeklyView".(Û¦–„8Ö¬âË£1
+cjavascript:S1481”":Remove the declaration of the unused 'dailyView' variable.(Òæóªùÿÿÿÿ8Ö¬âË£1
+`javascript:S1854”"7Remove this useless assignment to variable "dailyView".(Òæóªùÿÿÿÿ8Ö¬âË£1
+}javascript:S3776¿"TRefactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.(’›ªøÿÿÿÿ8Ö¬âË£1
+ujavascript:S4138Å"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(ä×”¢üÿÿÿÿ8Ö¬âË£1
+€javascript:S2392Å"WConsider moving declaration of 'i' as it is referenced outside current binding context.(ä×”¢üÿÿÿÿ8Ö¬âË£1
+pjavascript:S4138Ë"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(ÜÇäº8Ö¬âË£1
+;javascript:S2814Ë"'i' is already defined.(ÜÇäº8Ö¬âË£1
+@javascript:S2814×"'i' is already defined.(ƒÔ«£üÿÿÿÿ8Ö¬âË£1
+pjavascript:S4138Ù"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(‰–Åß8Ö¬âË£1
+}javascript:S3776“"TRefactor this function to reduce its Cognitive Complexity from 35 to the 15 allowed.(Óú†¨üÿÿÿÿ8Ö¬âË£1
+Zjavascript:S1854²"6Remove this useless assignment to variable "priority".(à˜Çˆ8Ö¬âË£1
+Zjavascript:S1854´"6Remove this useless assignment to variable "priority".(îÆÇ8Ö¬âË£1
+_javascript:S1854¶"6Remove this useless assignment to variable "priority".(·òÁÀúÿÿÿÿ8Ö¬âË£1
+_javascript:S1854¹"6Remove this useless assignment to variable "priority".(·òÁÀúÿÿÿÿ8Ö¬âË£1
+gjavascript:S1854Ó">Remove this useless assignment to variable "typeAbbreviation".(Îú‘üÿÿÿÿ8Ö¬âË£1
+gjavascript:S1854Õ">Remove this useless assignment to variable "typeAbbreviation".(¶ÍŒôøÿÿÿÿ8Ö¬âË£1
+gjavascript:S1854×">Remove this useless assignment to variable "typeAbbreviation".(öùöæùÿÿÿÿ8Ö¬âË£1
+^javascript:S1854ã":Remove this useless assignment to variable "categoryCode".(îøç8Ö¬âË£1
+cjavascript:S1854å":Remove this useless assignment to variable "categoryCode".(Ö”Õ„øÿÿÿÿ8Ö¬âË£1
+^javascript:S1854è":Remove this useless assignment to variable "categoryCode".(Å–ß•8Ö¬âË£1
+ajavascript:S1854ô"8Remove this useless assignment to variable "statusCode".(™½ÿöúÿÿÿÿ8Ö¬âË£1
+ajavascript:S1854ö"8Remove this useless assignment to variable "statusCode".(…ª­»ùÿÿÿÿ8Ö¬âË£1
+\javascript:S1854ø"8Remove this useless assignment to variable "statusCode".(ç¸ú¥8Ö¬âË£1
+hjavascript:S3358€"DExtract this nested ternary operation into an independent statement.(€’ÇÒ8Ö¬âË£1
+mjavascript:S3358"DExtract this nested ternary operation into an independent statement.(Ô Œüÿÿÿÿ8Ö¬âË£1
+gjavascript:S3358‚"DExtract this nested ternary operation into an independent statement.(Ğ¯•Y8Ö¬âË£1
+]javascript:S1135"4Complete the task associated to this "TODO" comment.(ëÆ–ûÿÿÿÿ8Ö¬âË£1
+[javascript:S1481®"7Remove the declaration of the unused 'sender' variable.(ŒÉë¶8Ö¬âË£1
+Xjavascript:S1854®"4Remove this useless assignment to variable "sender".(ŒÉë¶8Ö¬âË£1
+`javascript:S1481±"7Remove the declaration of the unused 'result' variable.(ˆ­ïüÿÿÿÿ8Ö¬âË£1
+]javascript:S1854±"4Remove this useless assignment to variable "result".(ˆ­ïüÿÿÿÿ8Ö¬âË£1
+mjavascript:S3358ï"DExtract this nested ternary operation into an independent statement.(ÎÎ÷¢ûÿÿÿÿ8æ¬âË£1
+mjavascript:S3358ò"DExtract this nested ternary operation into an independent statement.(ÊÌÌøÿÿÿÿ8æ¬âË£1
+gjavascript:S3358õ"DExtract this nested ternary operation into an independent statement.(Â¶‰z8æ¬âË£1
+]javascript:S1135Ê	"4Complete the task associated to this "TODO" comment.(ëÆ–ûÿÿÿÿ8æ¬âË£1

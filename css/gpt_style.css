@@ -1,0 +1,247 @@
+/* 전역 변수 정의 */
+:root {
+  --body-bg: #202123; /* 배경색 설정 */
+  --msger-bg: #444654; /* 메시지 영역 배경색 설정 */
+  --border: 2px solid #1e1e1e; /* 테두리 스타일 및 색상 설정 */
+  --left-msg-bg: #8b8da9; /* 왼쪽 메시지 배경색 설정 */
+  --right-msg-bg: #16171c; /* 오른쪽 메시지 배경색 설정 */
+}
+
+/* HTML 스타일링 */
+html {
+  box-sizing: border-box;
+}
+
+/* 전체 요소의 여백과 패딩을 초기화 */
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+/* body 스타일링 */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--body-bg); /* 배경색 설정 */
+  font-family: Helvetica, sans-serif; /* 글꼴 설정 */
+}
+
+/* 메시지 영역 스타일링 */
+.msger {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 867px; /* 최대 너비 설정 */
+  margin: 25px 10px;
+  height: calc(100% - 50px); /* 높이 계산 설정 */
+  border: var(--border); /* 테두리 스타일 및 색상 설정 */
+  border-radius: 5px; /* 테두리 모서리 둥글게 설정 */
+  background: var(--msger-bg); /* 배경색 설정 */
+  box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2); /* 그림자 효과 설정 */
+}
+
+/* 메시지 영역 헤더 스타일링 */
+.msger-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: var(--border); /* 헤더의 하단 테두리 설정 */
+  background: #2b2c34; /* 배경색 설정 */
+  color: #d9d9d9; /* 글자색 설정 */
+}
+
+/* 메시지 채팅 영역 스타일링 */
+.msger-chat {
+  flex: 1; /* 남은 공간 모두 사용 */
+  overflow-y: auto; /* 수직 스크롤이 필요한 경우 스크롤바 표시 */
+  padding: 10px;
+}
+
+/* 스크롤바 스타일링 */
+.msger-chat::-webkit-scrollbar {
+  width: 6px;
+}
+
+.msger-chat::-webkit-scrollbar-track {
+  background: #2b2c34; /* 스크롤바의 트랙 배경색 설정 */
+}
+
+.msger-chat::-webkit-scrollbar-thumb {
+  background: #444654; /* 스크롤바의 썸네일 배경색 설정 */
+}
+
+/* 메시지 스타일링 */
+.msg {
+  display: flex; /* Flexbox 레이아웃 사용 */
+  align-items: flex-end; /* 수직 정렬을 하단으로 설정 */
+  margin-bottom: 10px; /* 하단 여백 설정 */
+}
+
+/* 마지막 메시지의 마진을 0으로 설정 */
+.msg:last-of-type {
+  margin: 0;
+}
+
+/* 메시지 이미지 스타일 */
+.msg-img {
+  width: 50px; /* 너비 설정 */
+  height: 50px; /* 높이 설정 */
+  margin-right: 10px; /* 오른쪽 여백 설정 */
+  background-repeat: no-repeat; /* 배경 반복 제거 */
+  background-position: center; /* 배경 위치 가운데로 설정 */
+  background-size: cover; /* 배경 크기를 커버로 설정 */
+  border-radius: 50%; /* 테두리 모서리를 반원으로 설정 */
+}
+
+/* 메시지 말풍선 스타일 */
+.msg-bubble {
+  max-width: 450px; /* 최대 너비 설정 */
+  padding: 15px; /* 내부 여백 설정 */
+  border-radius: 15px; /* 테두리 모서리를 둥글게 설정 */
+  background: var(--left-msg-bg); /* 왼쪽 메시지의 배경색 설정 */
+}
+
+/* 메시지 정보 스타일 */
+.msg-info {
+  display: flex; /* Flexbox 레이아웃 사용 */
+  justify-content: space-between; /* 좌우 정렬을 위해 공간을 최대한 활용 */
+  align-items: center; /* 수직 중앙 정렬 */
+  margin-bottom: 10px; /* 하단 여백 설정 */
+}
+
+/* 메시지 정보 - 이름 스타일 */
+.msg-info-name {
+  margin-right: 10px; /* 오른쪽 여백 설정 */
+  font-weight: bold; /* 글꼴 두께 설정 */
+}
+
+/* 메시지 정보 - 시간 스타일 */
+.msg-info-time {
+  font-size: 0.85em; /* 글꼴 크기 설정 */
+}
+
+/* 왼쪽 메시지의 말풍선 스타일 */
+.left-msg .msg-bubble {
+  border-bottom-left-radius: 0; /* 좌하단 테두리를 제거하여 말풍선을 각진 모양으로 만듦 */
+}
+
+/* 오른쪽 메시지 스타일 */
+.right-msg {
+  flex-direction: row-reverse; /* 오른쪽으로 배치하여 메시지를 오른쪽 정렬 */
+}
+
+/* 오른쪽 메시지의 말풍선 스타일 */
+.right-msg .msg-bubble {
+  background: var(--right-msg-bg); /* 오른쪽 메시지의 배경색 설정 */
+  color: #fff; /* 글자색 설정 */
+  border-bottom-right-radius: 0; /* 우하단 테두리를 제거하여 말풍선을 각진 모양으로 만듦 */
+}
+
+/* 오른쪽 메시지의 이미지 스타일 */
+.right-msg .msg-img {
+  margin: 0 0 0 10px; /* 왼쪽 여백 설정 */
+}
+
+/* 메시지 입력 영역 스타일 */
+.msger-inputarea {
+  display: flex; /* Flexbox 레이아웃 사용 */
+  padding: 10px; /* 내부 여백 설정 */
+  border-top: var(--border); /* 상단 테두리 설정 */
+  background: #2b2c34; /* 배경색 설정 */
+}
+
+.msger-inputarea * {
+  padding: 10px; /* 내부 여백 설정 */
+  border: none; /* 테두리 제거 */
+  border-radius: 3px; /* 테두리 모서리 둥글게 설정 */
+  font-size: 1em; /* 글꼴 크기 설정 */
+}
+
+.msger-input {
+  flex: 1; /* 남은 공간 모두 사용 */
+  background: #444654; /* 배경색 설정 */
+  color: #d9d9d9; /* 글자색 설정 */
+}
+
+.msger-send-btn {
+  margin-left: 10px; /* 왼쪽 여백 설정 */
+  background: #69707a; /* 배경색 설정 */
+  color: #fff; /* 글자색 설정 */
+  font-weight: bold; /* 글꼴 두께 설정 */
+  cursor: pointer; /* 커서 스타일 설정 */
+}
+
+.msger-send-btn:hover {
+  background: #4c5563; /* 호버 시 배경색 변경 */
+}
+
+/* 사이드바 스타일 */
+.sidebar {
+  position: sticky; /* 고정 위치 설정 */
+  top: 0; /* 위쪽에서 붙임 */
+  height: 100%; /* 높이를 100%로 설정 */
+  width: 150px; /* 너비 설정 */
+  background-color: #202123; /* 배경색 설정 */
+  padding-top: 20px; /* 상단 여백 설정 */
+  overflow-y: auto; /* 수직 스크롤이 필요한 경우 스크롤바 표시 */
+  overflow-x: hidden; /* 가로 스크롤을 감춤 */
+}
+
+
+/* 공통 탭 링크 스타일 */
+.tablink {
+  display: block; /* 블록 레벨 요소로 설정 */
+  color: #fff; /* 글자색 설정 */
+  text-align: left; /* 텍스트 왼쪽 정렬 */
+  padding: 8px 16px; /* 내부 여백 설정 */
+  text-decoration: none; /* 텍스트에 밑줄 제거 */
+  font-size: 16px; /* 글꼴 크기 설정 */
+  border: none; /* 테두리 제거 */
+  background-color: #202123; /* 배경색 설정 */
+  width: 100%; /* 전체 너비 사용 */
+  cursor: pointer; /* 커서 스타일 설정 */
+  transition: 0.3s; /* 전환 효과 설정 */
+}
+
+/* 활성화된 탭 링크 스타일 */
+.tablink.active {
+  background-color: #444654; /* 활성화된 탭 배경색 설정 */
+  color: #fff; /* 활성화된 탭 글자색 설정 */
+}
+
+/* 탭 컨텐츠에 대한 스타일 */
+.tabcontent {
+  display: none; /* 기본적으로 숨김 */
+  padding: 20px; /* 내부 여백 설정 */
+  height: 100%; /* 높이를 100%로 설정 */
+}
+
+/* 첫 번째 탭에 대한 스타일 */
+#tab1 {
+  display: block; /* 첫 번째 탭을 보이게 설정 */
+}
+
+/* 사이드바 헤더 스타일 */
+.sidebar-header {
+  font-weight: bold; /* 글꼴 두께 설정 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+  margin-bottom: 26px; /* 하단 여백 설정 */
+  cursor: auto; /* 커서 스타일 설정 */
+}
+
+/* 삭제 버튼 스타일 */
+#delete-button {
+  background: none!important; /* 배경 제거 */
+  border: none; /* 테두리 제거 */
+  padding: 0!important; /* 내부 여백 제거 */
+  font-family: arial, sans-serif; /* 글꼴 설정 */
+  color: rgb(255, 255, 255); /* 글자색 설정 */
+  text-decoration: underline; /* 텍스트에 밑줄 설정 */
+  cursor: pointer; /* 커서 스타일 설정 */
+}

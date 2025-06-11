@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>캘린더</title>
+
+    <!-- "day.css" CSS 파일을 불러옴 -->
+    <style>
+        @import url(day.css);
+        @import url(css/header_style.css);
+    </style>
+</head>
+<body>
+<header>
+    <nav id="top-nav">
+        <div class="logo">
+            <a href="main.php"><img src="img/WH.png" alt="Company Logo"></a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="announce.php">공지사항</a></li>
+            <li><a href="day.html">내프로젝트</a></li>
+            <li><a href="business_record.php">업무기록</a></li>
+            <li><a href="day.html">캘린더</a></li>
+            <li><a href="user_profile.php">인사정보 보기</a></li>
+        </ul>
+        <!-- 토글 메뉴 버튼 -->
+        <!--<div class="menu-toggle">MENU</div>-->
+
+        <!-- 토글 메뉴 내용 -->
+        <!--        <div class="menu-content">
+                    <a href="javascript:void(0)" class="closebtn">&times; Close</a>
+                </div>-->
+    </nav>
+</header>
+<!-- 다양한 요소를 포함하는 사이드바 -->
+<div class="sidebar">
+    <!-- 사이드바 내비게이션용 캘린더 -->
+    <div class="sidebar-calendar">
+        <!-- 월간, 주간, 일간 보기로 전환하는 버튼들 -->
+        <button id="monthlyBtn">월간</button>
+        <button id="weeklyBtn">주간</button>
+        <button id="dailyBtn">일간</button>
+        <table>
+            <caption>
+                <!-- 이전 달로 이동하는 버튼 -->
+                <button onclick="prevMonth('sidebar-calendar')">&lt;</button>
+                <!-- 다음 달로 이동하는 버튼 -->
+                <button onclick="nextMonth('sidebar-calendar')">&gt;</button>
+                <!-- 현재 월을 표시하는 요소 -->
+                <span class="currentMonth"></span>
+            </caption>
+            <thead>
+            <tr>
+                <!-- 요일 헤더들 -->
+                <th>일</th>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+                <th>토</th>
+            </tr>
+            </thead>
+            <!-- 캘린더 데이터를 담을 자리 -->
+            <tbody class="calendarBody"></tbody>
+        </table>
+    </div>
+
+    <!-- 멤버를 찾기 위한 검색 컨테이너 -->
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="멤버 찾기">
+        <button class="search-button">검색</button>
+    </div>
+
+    <!-- "나의 캘린더"와 "구독한 캘린더" 두 가지 섹션을 토글하는 리스트 -->
+    <div class="toggle-list">
+        <ul>
+            <!-- "나의 캘린더" 섹션 -->
+            <li class="list-item">
+                <button class="button" onclick="toggleContent('dataList', 'button')">▼</button>
+                나의 캘린더
+                <button class="button" onclick="addModal()">+</button>
+                <!-- "나의 캘린더" 내용을 담을 자리 -->
+                <div class="content" id="dataList"> </div>
+            </li>
+            <!-- "구독한 캘린더" 섹션 -->
+            <li class="list-item">
+                <button class="button" onclick="toggleContent('datafList', 'button')">▼</button>
+                구독한 캘린더
+                <button class="button" onclick="addfModal()">+</button>
+                <!-- "구독한 캘린더" 내용을 담을 자리 -->
+                <div class="content" id="datafList"> </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- "나의 캘린더"에 새로운 캘린더를 추가하는 모달 -->
+<div id="addModal" class="modal">
+    <!-- 모달 컨텐츠 -->
+    <div class="modal-content">
+        <!-- 모달 닫기 버튼 -->
+        <span class="close" onclick="hideModal()">&times;</span>
+        <!-- 모달 제목 -->
+        <h2>나의 캘린더 목록</h2>
+        <!-- 새로운 캘린더를 추가하는 입력 필드 -->
+        <input type="text" id="addInput" placeholder="추가할 캘린더 목록 입력하세요.(15자 이내)">
+        <!-- 새로운 캘린더를 추가하는 버튼 -->
+        <button onclick="addCalendar()">추가</button>
+    </div>
+</div>
+
+<!-- "구독한 캘린더"에 새로운 캘린더를 추가하는 모달 -->
+<div id="favoriteModal" class="modal">
+    <!-- 모달 컨텐츠 -->
+    <div class="modal-content">
+        <!-- 모달 닫기 버튼 -->
+        <span class="close" onclick="hidefModal()">&times;</span>
+        <!-- 모달 제목 -->
+        <h2>관심 캘린더 목록</h2>
+        <!-- 새로운 캘린더를 추가하는 입력 필드 -->
+        <input type="text" id="favoriteInput" placeholder="추가할 관심 캘린더 목록 입력하세요.(15자 이내)">
+        <!-- 새로운 캘린더를 추가하는 버튼 -->
+        <button onclick="addcalendarModal()">추가</button>
+    </div>
+</div>
+
+<!-- 메인 콘텐츠 섹션 -->
+<div class="content">
+    <!-- 월간, 주간, 일간 캘린더 보기를 포함하는 컨텐츠 -->
+    <div class="calendar-content-calendar">
+        <!-- 월간 캘린더 -->
+        <div class="view" id="monthlyView">
+            <caption>
+                <!-- 이전 달로 이동하는 버튼 -->
+                <button id="prevMonthBtn">이전 달</button>
+                <!-- 현재 년도와 월을 표시하는 요소 -->
+                <span id="currentMonthLabel"></span>
+                <!-- 다음 달로 이동하는 버튼 -->
+                <button id="nextMonthBtn">다음 달</button>
+                <!-- 현재 날짜로 이동하는 버튼 -->
+                <button id="todayBtnm" onclick="goToTodayMonthly()">오늘</button>
+            </caption>
+            <!-- 요일 헤더를 포함한 월간 캘린더 테이블 -->
+            <table class="monthly-calendar-header">
+                <tr>
+                    <th>일</th>
+                    <th>월</th>
+                    <th>화</th>
+                    <th>수</th>
+                    <th>목</th>
+                    <th>금</th>
+                    <th>토</th>
+                </tr>
+            </table>
+            <!-- 월간 캘린더를 표시할 테이블 -->
+            <table id="monthlyCalendarOutput"></table>
+        </div>
+
+        <!-- 주간 캘린더 -->
+        <div class="view" id="weeklyView">
+            <caption>
+                <!-- 이전 주로 이동하는 버튼 -->
+                <button id="prevWeekBtn">이전 주</button>
+                <!-- 현재 년도와 월, 주차를 표시하는 요소 -->
+                <span id="currentWeekLabel"></span>
+                <!-- 다음 주로 이동하는 버튼 -->
+                <button id="nextWeekBtn">다음 주</button>
+                <!-- 현재 날짜로 이동하는 버튼 -->
+                <button id="todayBtnw" onclick="goToTodayWeekly()">오늘</button>
+            </caption>
+            <!-- 주간 캘린더를 표시할 테이블 -->
+            <table id="weeklyCalendarOutput"></table>
+            <!-- 시간대 표를 표시하는 테이블 -->
+            <table class="time-table">
+                <thead>
+                <tr id="weeklyDatesRow">
+                    <th colspan="7"></th>
+                </tr>
+                </thead>
+                <tbody id="weeklyTimeTable"></tbody>
+            </table>
+        </div>
+
+        <!-- 일간 캘린더 -->
+        <div class="view" id="dailyView">
+            <caption>
+                <!-- 이전 날짜로 이동하는 버튼 -->
+                <button id="prevDayBtn">이전 날짜</button>
+                <!-- 현재 년도와 월, 일을 표시하는 요소 -->
+                <span id="currentDayLabel"></span>
+                <!-- 다음 날짜로 이동하는 버튼 -->
+                <button id="nextDayBtn">다음 날짜</button>
+                <!-- 현재 날짜로 이동하는 버튼 -->
+                <button id="todayBtnd" onclick="goToTodayDaily()">오늘</button>
+            </caption>
+            <!-- 일간 캘린더를 표시할 테이블 -->
+            <table id="dailyCalendarOutput"></table>
+            <!-- 시간대 표를 표시하는 테이블 -->
+            <table class="time-table">
+                <thead>
+                <tr>
+                    <th>시간</th>
+                    <th id="currentDateHeader"></th>
+                </tr>
+                </thead>
+                <tbody id="dailyTimeTable"></tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<!--할 일 추가 모달-->
+<div id="myModal" class="modal">
+    <!-- 모달 컨텐츠 -->
+    <div class="modal-content">
+        <!-- 모달 닫기 버튼 -->
+        <span class="close" onclick="hideMyModal()">&times;</span>
+        <!-- 모달에 표시되는 일정 날짜 -->
+        <h2 id="modalDate"></h2>
+        <!-- 일정 제목 입력 필드 -->
+        <label for="title">제목:</label>
+        <input type="text" id="title" maxlength="50" required><br>
+
+        <!-- 캘린더 선택을 위한 드롭다운 -->
+        <label for="calendar">캘린더 선택:</label>
+        <select id="calendar" class="shared-feature" required></select><br>
+
+        <!-- 일정 시작일 입력 필드 -->
+        <label for="startDate">날짜:</label>
+        <input type="datetime-local" id="startDate" required>
+
+        <!-- 일정 종료일 입력 필드 -->
+        <label for="endDate"> ~ </label>
+        <input type="datetime-local" id="endDate" required><br>
+
+        <!-- 받을 멤버 입력 필드 -->
+        <label for="members">받을 멤버:</label>
+        <input type="text" id="members" placeholder="사번 (쉼표로 구분)" required><br>
+
+        <!-- 개인/회사/거래처 선택을 위한 드롭다운 -->
+        <label for="type">분류:</label>
+        <select id="type" required>
+            <option value="개인">개인</option>
+            <option value="회사">회사</option>
+            <option value="거래처">거래처</option>
+        </select>
+
+        <!-- 거래/컴플레인/기타 선택을 위한 드롭다운 -->
+        <label for="category"></label>
+        <select id="category" required>
+            <option value="거래">제품 거래</option>
+            <option value="컴플레인">컴플레인</option>
+            <option value="기타">기타</option>
+        </select>
+
+        <!-- 완료/보류/진행중 선택을 위한 드롭다운 -->
+        <label for="status"></label>
+        <select id="status" required>
+            <option value="완료">완료</option>
+            <option value="보류">보류</option>
+            <option value="진행중">진행중</option>
+        </select><br>
+
+        <!-- 기타 선택 시 추가 입력 필드 -->
+        <div id="etcField" style="display: none;">
+            <label for="etcCategory">기타 카테고리:</label>
+            <input type="text" id="etcCategory" placeholder="기타 카테고리 입력">
+        </div>
+
+        <!-- 중요도 체크박스 -->
+        <label>중요도:</label>
+        <input type="checkbox" id="highPriority">
+        <label for="highPriority">상</label>
+        <input type="checkbox" id="mediumPriority">
+        <label for="mediumPriority">중</label>
+        <input type="checkbox" id="lowPriority">
+        <label for="lowPriority">하</label><br>
+
+        <!-- 파일 첨부 input -->
+        <label for="file">파일 첨부:</label>
+        <input type="file" id="file" multiple><br>
+
+        <!-- 일정 설명 입력 필드 -->
+        <label for="description">설명:</label>
+        <textarea id="description" maxlength="150"></textarea><br>
+
+        <!-- 숨겨진 필드: 결과 값을 담을 input 태그 -->
+        <input type="hidden" id="result" name="result">
+
+        <!-- 일정을 생성하는 버튼 -->
+        <button  onclick="add()">일정 생성</button>
+    </div>
+</div>
+
+<!-- 할 일 보기 -->
+<div id="modalTemplate" class="custom-modal-container">
+    <div class="custom-modal-content">
+        <h2 id="modalTitle">일정 상세 정보</h2>
+        <label for="modalTodoTitle">제목:</label>
+        <input type="text" id="modalTodoTitle">
+        <br>
+        <label>캘린더 목록: </label>
+        <select class="shared-feature"></select>
+        <br>
+        <label for="modalStartDate">시작일:</label>
+        <input type="datetime-local" id="modalStartDate">
+        <br>
+        <label for="modalEndDate">종료일:</label>
+        <input type="datetime-local" id="modalEndDate">
+        <br>
+        <label for="modalDescriptionTextarea">설명:</label>
+        <textarea id="modalDescriptionTextarea" rows="4"></textarea>
+        <br>
+        <label>업로드 파일</label>
+        <span style="white-space: nowrap;">
+            <a id="modalDownloadLink" style="display: none;" download>Download File</a>
+        </span>
+    </div>
+</div>
+
+<script>
+    // 오늘로 가기 기능 - 월간 캘린더
+    function goToTodayMonthly() {
+        const year = new Date().getFullYear(); // 현재 연도 가져오기
+        const month = new Date().getMonth() + 1; // 현재 월 가져오기 (월은 0부터 시작하므로 1을 더합니다.)
+
+        // 현재 연도와 월을 변수에 저장
+        currentYear = year;
+        currentMonth = month;
+
+        // 월간 캘린더 출력 함수 호출
+        printMonthlyCalendar(year, month);
+    }
+
+    // 오늘로 가기 기능 - 주간 캘린더
+    function goToTodayWeekly() {
+        const year = new Date().getFullYear(); // 현재 연도 가져오기
+        const month = new Date().getMonth() + 1; // 현재 월 가져오기 (월은 0부터 시작하므로 1을 더합니다.)
+        const day = new Date().getDate(); // 현재 날짜 가져오기
+
+        // 현재 연도, 월, 날짜를 변수에 저장
+        currentYear = year;
+        currentMonth = month;
+        currentDay = day;
+
+        // 주간 캘린더 출력 함수 호출
+        printWeeklyCalendar(year, month, day);
+    }
+
+    // 오늘로 가기 기능 - 일간 캘린더
+    function goToTodayDaily() {
+        const year = new Date().getFullYear(); // 현재 연도 가져오기
+        const month = new Date().getMonth() + 1; // 현재 월 가져오기 (월은 0부터 시작하므로 1을 더합니다.)
+        const day = new Date().getDate(); // 현재 날짜 가져오기
+
+        // 현재 연도, 월, 날짜를 변수에 저장
+        currentYear = year;
+        currentMonth = month;
+        currentDay = day;
+
+        // 일간 캘린더 출력 함수 호출
+        printDailyCalendar(year, month, day);
+    }
+
+    // 사이드 메뉴바 토글 기능
+    function toggleContent(contentId, buttonId) {
+        // 요소 가져오기
+        var content = document.getElementById(contentId);
+        var button = document.getElementById(buttonId);
+
+        // content가 보이지 않을 경우 보이도록 설정하고 버튼 텍스트 변경
+        if (content.style.display === 'none' || content.style.display === '') {
+            content.style.display = 'block';
+            button.textContent = '-';
+        } else { // content가 보이는 경우 숨기도록 설정하고 버튼 텍스트 변경
+            content.style.display = 'none';
+            button.textContent = '+';
+        }
+    }
+
+    // 캘린더 목록 가져오기 기능
+    function fetchData() {
+        // AJAX를 사용하여 데이터 목록 가져오기
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "get_calendars.php", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // 데이터 목록 표시
+                var dataList = document.getElementById("dataList");
+                dataList.innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send();
+    }
+
+    let currentView = "daily";        //기본 캘린더 값
+
+    // 체크박스 상태 변경 이벤트 리스너 등록
+    document.addEventListener("DOMContentLoaded", function () {
+        const dataList = document.getElementById("dataList");
+        dataList.addEventListener("change", function (event) {
+            if (event.target.type === "checkbox") {
+                const calName = event.target.value;
+                const isChecked = event.target.checked;
+
+                // 서버로 데이터 전송 (fetch API 사용)
+                fetch("cal_ispublic.php", {
+                    method: "POST",
+                    body: JSON.stringify({ calName: calName, ispublic: isChecked ? 1 : 0 }),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        // 서버에서 반환한 데이터를 처리하는 부분입니다.
+                        console.log(data);
+
+                        // 현재 날짜 가져오기
+                        const year = new Date().getFullYear();
+                        const month = new Date().getMonth() + 1;
+                        const day = new Date().getDate();
+                        currentYear = year;
+                        currentMonth = month;
+                        currentDay = day;
+
+                        // 캘린더 화면을 새로고침합니다.
+                        if (currentView === "monthly") {
+                            // 월간 캘린더 초기화
+                            const monthlyView = document.getElementById("monthlyView");
+                            // monthlyView 초기화 코드 추가
+                            printMonthlyCalendar(year, month);
+                        } else if (currentView === "weekly") {
+                            // 주간 캘린더 초기화
+                            const weeklyView = document.getElementById("weeklyView");
+                            printWeeklyCalendar(year, month, day);
+                        } else if (currentView === "daily") {
+                            // 일간 캘린더 초기화
+                            const dailyView = document.getElementById("dailyView");
+                            // dailyView 초기화 코드 추가
+                            printDailyCalendar(year, month, day);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                    });
+            }
+        });
+    });
+
+    // 관심 캘린더 목록 가져오기 기능
+    function favorite_fetchData() {
+        // AJAX를 사용하여 데이터 목록 가져오기
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "get_favoritecalendar.php", true);      //관심 캘린더 목록을 불러오는 파일
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // 데이터 목록 표시
+                var dataList = document.getElementById("datafList");
+                dataList.innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send();
+    }
+
+    // 현재 날짜 가져오기
+    var today = new Date();
+
+    // 이전 달로 이동
+    function prevMonth(calendarClass) {
+        today.setMonth(today.getMonth() - 1);
+        renderCalendar(calendarClass);
+    }
+
+    // 다음 달로 이동
+    function nextMonth(calendarClass) {
+        today.setMonth(today.getMonth() + 1);
+        renderCalendar(calendarClass);
+    }
+
+    // 캘린더 렌더링
+    function renderCalendar(calendarClass) {
+        var currentMonth = today.getMonth(); // 현재 월 가져오기
+        var currentYear = today.getFullYear(); // 현재 연도 가져오기
+
+        // 현재 월, 년도 표시
+        var currentMonthElements = document.getElementsByClassName(calendarClass)[0].getElementsByClassName("currentMonth");
+        for (var i = 0; i < currentMonthElements.length; i++) {
+            currentMonthElements[i].innerHTML = currentYear + "년 " + (currentMonth + 1) + "월"; // 현재 월, 년도 표시
+        }
+
+        // 달력 테이블 초기화
+        var calendarBodyElements = document.getElementsByClassName(calendarClass)[0].getElementsByClassName("calendarBody");
+        for (var i = 0; i < calendarBodyElements.length; i++) {
+            calendarBodyElements[i].innerHTML = ""; // 달력 테이블 초기화
+        }
+
+        // 현재 월의 첫 날짜 가져오기
+        var firstDay = new Date(currentYear, currentMonth, 1);
+
+        // 첫 주 시작 날짜로 설정
+        var startDay = new Date(firstDay);
+        startDay.setDate(startDay.getDate() - startDay.getDay());
+
+        // 달력 행 추가
+        for (var i = 0; i < 6; i++) {
+            var rows = document.getElementsByClassName(calendarClass)[0].getElementsByClassName("calendarBody");
+            for (var j = 0; j < rows.length; j++) {
+                var row = document.createElement("tr"); // 행(tr) 엘리먼트 생성
+
+                // 주의 열 추가
+                for (var k = 0; k < 7; k++) {
+                    var cell = document.createElement("td"); // 셀(td) 엘리먼트 생성
+                    cell.innerHTML = startDay.getDate(); // 셀에 날짜 텍스트 추가
+
+                    // 현재 월이 아닌 날짜 스타일링
+                    if (startDay.getMonth() !== currentMonth) {
+                        cell.classList.add("other-month");
+                        cell.classList.remove("current-month");
+                    } else {
+                        cell.classList.add("current-month");
+                        cell.classList.remove("other-month");
+
+                        // 날짜 셀에 클릭 이벤트 추가 (일정 추가 모달 표시)
+                        cell.addEventListener("click", function () {
+                            var date = this.innerHTML;
+                            showModal(date);
+                        });
+                    }
+
+                    // 오늘 날짜 스타일링
+                    if (startDay.toDateString() === today.toDateString()) {
+                        cell.classList.add("today");
+                    }
+
+                    row.appendChild(cell); // 셀을 행에 추가
+
+                    // 다음 날짜로 이동
+                    startDay.setDate(startDay.getDate() + 1);
+                }
+
+                rows[j].appendChild(row); // 행을 달력에 추가
+            }
+        }
+    }
+
+    // 중요도 체크박스 클릭 이벤트 핸들러
+    function handlePriorityClick(clickedPriority) {
+        var highPriority = document.getElementById("highPriority");
+        var mediumPriority = document.getElementById("mediumPriority");
+        var lowPriority = document.getElementById("lowPriority");
+
+        if (clickedPriority === "high") {
+            mediumPriority.checked = false;
+            lowPriority.checked = false;
+        } else if (clickedPriority === "medium") {
+            highPriority.checked = false;
+            lowPriority.checked = false;
+        } else if (clickedPriority === "low") {
+            highPriority.checked = false;
+            mediumPriority.checked = false;
+        }
+    }
+
+    // 사이드 캘린더 모달 창 표시
+    function showModal(date) {
+        var modal = document.getElementById("myModal");
+        var modalDate = document.getElementById("modalDate");
+        var title = document.getElementById("title");
+        var calendar = document.getElementById("calendar");
+        var startDate = document.getElementById("startDate");
+        var endDate = document.getElementById("endDate");
+        var type = document.getElementById("type");
+        var category = document.getElementById("category");
+        var etcCategory = document.getElementById("etcCategory");
+        var status = document.getElementById("status");
+        var highPriority = document.getElementById("highPriority");
+        var mediumPriority = document.getElementById("mediumPriority");
+        var lowPriority = document.getElementById("lowPriority");
+        var fileInput = document.getElementById("file");
+        var members = document.getElementById("members");
+        var description = document.getElementById("description");
+        var result = document.getElementById("result");
+
+        var selectedDate = new Date(today.getFullYear(), today.getMonth(), date);
+        var year = selectedDate.getFullYear();
+        var month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+        var day = String(selectedDate.getDate()).padStart(2, '0');
+        var formattedDate = year + '-' + month + '-' + day;
+
+        var currentTime = new Date();
+        currentTime.setMinutes(Math.ceil(currentTime.getMinutes() / 10) * 10);
+        var oneHourLater = new Date(currentTime);
+        oneHourLater.setHours(oneHourLater.getHours() + 1);
+        var priority;
+
+        if (highPriority) {
+            priority = "상";
+        } else if (mediumPriority) {
+            priority = "중";
+        } else if (lowPriority) {
+            priority = "하";
+        } else {
+            // 중요도가 선택되지 않았을 경우 기본값으로 설정 (예: 하 중요도로 설정)
+            priority = "하";
+        }
+
+        modal.style.display = "block";
+        modalDate.innerHTML = "일정 추가";
+        title.value = "";
+        calendar.value = calendar.options[0].value;
+        startDate.value = formattedDate + " " + formatTime(currentTime);
+        endDate.value = formattedDate + " " + formatTime(oneHourLater);
+        type.value = "개인";
+        category.value = "거래";
+        etcField.style.display = "none";
+        etcCategory.value = "";
+        status.value = "완료";
+        highPriority.checked = false;
+        mediumPriority.checked = false;
+        lowPriority.checked = false;
+        fileInput.value = null;
+        members.value = "";
+        description.value = "";
+
+        // 분류 선택 시
+        type.onchange = function() {
+            let selectedType = type.value;
+            let typeAbbreviation = "";
+
+            if (selectedType === "개인") {
+                typeAbbreviation = "G";
+            } else if (selectedType === "회사") {
+                typeAbbreviation = "C";
+            } else if (selectedType === "거래처") {
+                typeAbbreviation = "A";
+            }
+
+            updateResult();
+        };
+
+        // 분류 선택 시
+        type.onchange = function() {
+            updateResult();
+        };
+
+        // 카테고리 선택 시
+        category.onchange = function() {
+            var category = document.getElementById("category");
+            var etcField = document.getElementById("etcField");
+            var etcCategory = document.getElementById("etcCategory");
+
+            if (category.value === "기타") {
+                etcField.style.display = "block";
+                etcCategory.required = true;
+            } else {
+                etcField.style.display = "none";
+                etcCategory.required = false;
+            }
+
+            updateResult();
+        };
+
+        // 상태 선택 시
+        status.onchange = function() {
+            updateResult();
+        };
+
+        updateResult();
+
+        // 외부 클릭시 모달을 숨김
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+    }
+
+    // 중요도 체크박스 클릭 이벤트 리스너 설정
+    document.getElementById("highPriority").addEventListener("click", function() {
+        handlePriorityClick("high");
+    });
+    document.getElementById("mediumPriority").addEventListener("click", function() {
+        handlePriorityClick("medium");
+    });
+    document.getElementById("lowPriority").addEventListener("click", function() {
+        handlePriorityClick("low");
+    });
+
+    // 모달 숨기기 (일정 추가 모달)
+    function hideMyModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+    }
+
+    // 캘린더 추가 모달 창 표시
+    function addModal() {
+        var modal = document.getElementById("addModal");
+        var data = document.getElementById("addInput");
+        data.value = '';
+        modal.style.display = "block";
+    }
+
+    // 모달 창 숨기기 (캘린더 추가 모달)
+    function hideModal() {
+        var modal = document.getElementById("addModal");
+        modal.style.display = "none";
+    }
+
+    // 캘린더 목록 추가
+    function addCalendar() {
+        var calendarName = document.getElementById("addInput").value;
+
+        // AJAX 요청을 보내기 위한 XMLHttpRequest 객체 생성
+        var xhr = new XMLHttpRequest();
+
+        // POST 방식으로 요청을 보낼 URL 설정
+        var url = 'cal_add.php';        //캘린더 목록 추가하는 php파일
+
+        // 요청을 비동기 방식으로 설정
+        xhr.open('POST', url, true);
+
+        // 요청 헤더 설정
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        // 요청이 완료된 경우의 콜백 함수 정의
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // 요청이 성공적으로 완료된 경우
+                    var response = JSON.parse(xhr.responseText);
+                    alert(response); // 서버에서의 응답 처리 (예: 알림창으로 성공 메시지 보여주기 등)
+                    location.reload();
+                    hideModal(); // 모달 창 숨기기
+                } else {
+                    // 요청이 실패한 경우
+                    console.error('Error:', xhr.status, xhr.statusText);
+                }
+            }
+        };
+
+        // 데이터를 서버로 전송하기 위한 쿼리스트링 생성
+        var data = 'calendarName=' + encodeURIComponent(calendarName);
+
+        // 요청 보내기
+        xhr.send(data);
+    }
+
+    // 관심 캘린더 추가 모달 창 표시
+    function addfModal() {
+        var modal = document.getElementById("favoriteModal");
+        var data = document.getElementById("favoriteInput");
+        data.value = '';
+        modal.style.display = "block";
+    }
+
+    // 모달 창 숨기기 (관심 캘린더 추가 모달)
+    function hidefModal() {
+        var modal = document.getElementById("favoriteModal");
+        modal.style.display = "none";
+    }
+
+    // 관심 캘린더 목록 추가
+    function addcalendarModal() {
+        var favoritecalendarName = document.getElementById("favoriteInput").value;
+
+        // AJAX 요청을 보내기 위한 XMLHttpRequest 객체 생성
+        var xhr = new XMLHttpRequest();
+
+        // POST 방식으로 요청을 보낼 URL 설정
+        var url = 'fav_Cal_add.php';        //관심 캘린더 추가하는 코드
+
+        // 요청을 비동기 방식으로 설정
+        xhr.open('POST', url, true);
+
+        // 요청 헤더 설정
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        // 요청이 완료된 경우의 콜백 함수 정의
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // 요청이 성공적으로 완료된 경우
+                    var response = JSON.parse(xhr.responseText);
+                    alert(response); // 서버에서의 응답 처리 (예: 알림창으로 성공 메시지 보여주기 등)
+                    location.reload();
+                    hideModal(); // 모달 창 숨기기
+                } else {
+                    // 요청이 실패한 경우
+                    console.error('Error:', xhr.status, xhr.statusText);
+                }
+            }
+        };
+
+        // 데이터를 서버로 전송하기 위한 쿼리스트링 생성
+        var data = 'favoritecalendarName=' + encodeURIComponent(favoritecalendarName);
+
+        // 요청 보내기
+        xhr.send(data);
+    }
+
+    // 일정 추가
+    function add() {
+        var modal = document.getElementById("myModal");
+
+        // 입력된 일정 정보 가져오기
+        const title = document.getElementById('title').value;               // 제목
+        const calendar = document.getElementById('calendar').value;         // 캘린더 목록
+        const startDate = document.getElementById('startDate').value;       // 시작 날짜
+        const endDate = document.getElementById('endDate').value;           // 끝나는 날짜
+        const members = document.getElementById('members').value;           // 받는 사람
+        const description = document.getElementById('description').value;   // 내용
+        const result = document.getElementById('result').value;             // 결과 값
+        const priority = getSelectedPriority(); // 함수를 통해 중요도 값 가져오기
+        const fileInput = document.getElementById('file').files[0];         // 파일 입력 값
+
+        // AJAX 요청을 보내기 위한 XMLHttpRequest 객체 생성
+        var xhr = new XMLHttpRequest();
+
+        // POST 방식으로 요청을 보낼 URL 설정
+        var url = 'add.php';
+
+        // 요청을 비동기 방식으로 설정
+        xhr.open('POST', url, true);
+
+        // 요청 헤더 설정
+        var formData = new FormData();
+        formData.append('title', title);
+        formData.append('calendar', calendar);
+        formData.append('startDate', startDate);
+        formData.append('endDate', endDate);
+        formData.append('members', members);
+        formData.append('description', description);
+        formData.append('result', result);
+        formData.append('priority', priority);
+        formData.append('file', fileInput);
+
+        // 요청이 완료된 경우의 콜백 함수 정의
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // 요청이 성공적으로 완료된 경우
+                    alert(xhr.responseText); // 서버에서의 응답 처리 (예: 알림창으로 성공 메시지 보여주기 등)
+                    location.reload();
+                } else {
+                    // 요청이 실패한 경우
+                    console.error('Error:', xhr.status, xhr.statusText);
+                }
+            }
+        };
+
+        // 요청 보내기
+        xhr.send(formData);
+
+        modal.style.display = "none"; // 일정 추가 모달 숨기기
+    }
+
+    // 선택된 중요도 값을 가져오는 함수
+    function getSelectedPriority() {
+        const highPriority = document.getElementById('highPriority').checked;
+        const mediumPriority = document.getElementById('mediumPriority').checked;
+        const lowPriority = document.getElementById('lowPriority').checked;
+
+        if (highPriority) {
+            return "상";
+        } else if (mediumPriority) {
+            return "중";
+        } else if (lowPriority) {
+            return "하";
+        } else {
+            // 중요도가 선택되지 않았을 경우 기본값으로 설정 (예: 하 중요도로 설정)
+            return "하";
+        }
+    }
+
+    // 모달 폼의 캘린더 목록 가져오기
+    function updateCalendarList(calendars) {
+        var dataList = document.querySelectorAll('.shared-feature');
+        dataList.forEach(function(dataElement) {
+            dataElement.innerHTML = ""; // 기존 옵션 제거
+
+            calendars.forEach(function(calendar) {
+                var option = document.createElement("option");
+                option.value = calendar.cal_id;
+                option.textContent = calendar.cal_name;
+                dataElement.appendChild(option);
+            });
+        });
+    }
+
+    function get_calendars() {
+        // AJAX를 사용하여 데이터 목록 가져오기
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "get_calendar_data.php", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var calendars = JSON.parse(xhr.responseText);
+                updateCalendarList(calendars);
+            }
+        };
+        xhr.send();
+    }
+
+
+    //삭제 함수는 캘린더 목록은 get_calendars.php파일에서 관심 캘린더 목록은 get_favoriitecalendar.php에서 불러와서 쓰고 있음.
+    // 캘린더 목록 데이터 삭제 함수
+    function deleteData(id, name) {
+        if (confirm(name + "를 삭제하시겠습니까?")) {
+            // AJAX를 이용해 데이터 삭제 요청을 보냅니다.
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "cal_delete.php", true);       //캘린더 삭제 코드
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // 서버에서 응답이 오면 메시지를 출력하고 페이지를 새로고침합니다.
+                        alert(xhr.responseText);
+                        location.reload();
+                    } else {
+                        // 서버 응답이 실패한 경우 에러 메시지를 출력합니다.
+                        alert("삭제 실패: " + xhr.responseText);
+                    }
+                }
+            };
+            var data = "deleteId=" + id + "&deleteName=" + name;
+            xhr.send(data);
+        }
+    }
+
+    // 관심 캘린더 데이터 삭제 함수
+    function fav_deleteData(id, name) {
+        if (confirm(name + "를 삭제하시겠습니까?")) {
+            // AJAX를 이용해 데이터 삭제 요청을 보냅니다.
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "fav_cal_delete.php", true);       //관심 캘린더 목록 삭제 코드
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // 서버에서 응답이 오면 메시지를 출력하고 페이지를 새로고침합니다.
+                        alert(xhr.responseText);
+                        location.reload();
+                    } else {
+                        // 서버 응답이 실패한 경우 에러 메시지를 출력합니다.
+                        alert("삭제 실패: " + xhr.responseText);
+                    }
+                }
+            };
+            var data = "deleteId=" + id + "&deleteName=" + name;
+            xhr.send(data);
+        }
+    }
+
+
+    let currentYear, currentMonth, currentDay;
+
+    // 월간, 주간, 일간 캘린더 뷰를 토글하는 함수
+    function toggleView(viewId) {
+        const views = document.querySelectorAll('.view');
+        views.forEach(view => {
+            if (view.id === viewId) {
+                view.classList.add('active'); // 선택된 뷰에 'active' 클래스 추가하여 표시
+            } else {
+                view.classList.remove('active'); // 선택되지 않은 뷰는 'active' 클래스 제거하여 감춤
+            }
+        });
+    }
+
+    // 월간 캘린더 출력 함수
+    function printMonthlyCalendar(year, month) {
+        // 해당 월의 마지막 날짜를 가져옴 (현재 월의 다음 월의 0번째 날짜를 가져옴)
+        const daysInMonth = new Date(year, month, 0).getDate();
+        // 해당 월의 첫째 날짜의 요일을 가져옴 (일요일은 0, 월요일은 1, ... 토요일은 6)
+        const firstDay = new Date(year, month - 1, 1).getDay();
+        // 월간 캘린더를 출력할 요소를 가져옴
+        const calendarOutput = document.getElementById('monthlyCalendarOutput');
+        // 캘린더 출력 요소 내용 초기화
+        calendarOutput.innerHTML = '';
+
+        let day = 1;
+        // 이전 달의 마지막 날짜를 가져옴
+        let lastDayOfPrevMonth = new Date(year, month - 1, 0).getDate();
+
+        // 주 단위로 캘린더를 출력
+        for (let week = 0; week < 6; week++) {
+            const row = calendarOutput.insertRow();
+
+            // 일주일(7일) 동안 날짜 셀을 생성하면서 채움
+            for (let weekday = 0; weekday < 7; weekday++) {
+                if (week === 0 && weekday < firstDay) {
+                    // 이전 달의 마지막 날짜를 출력
+                    const prevMonthDay = lastDayOfPrevMonth - firstDay + weekday + 1;
+                    const cell = row.insertCell();
+                    cell.innerText = prevMonthDay;
+                    cell.style.color = '#ccc';
+                } else if (day <= daysInMonth) {
+                    // 현재 달의 날짜를 출력하고 클릭 이벤트를 추가
+                    const cell = row.insertCell();
+                    cell.innerText = day;
+
+                    // 현재 달의 날짜 셀을 클릭한 경우
+                    // 현재 달의 날짜 셀에 클릭 이벤트 추가
+                    cell.addEventListener("click", function () {
+                        MONTHshowModal(year, month, this.innerText); // 클릭한 날짜의 년도와 월, 일로 전달
+                    });
+
+                    // 현재 날짜와 일치하는 셀에 "current-day" 클래스 추가
+                    const currentDate = new Date();
+                    if (
+                        currentDate.getFullYear() === year &&
+                        currentDate.getMonth() + 1 === month &&
+                        currentDate.getDate() === day
+                    ) {
+                        cell.classList.add('current-day');
+                    }
+
+                    // year, month, day 값을 날짜 형식으로 묶어서 전달
+                    const date = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+                    // title 값을 서버에서 가져오는 함수 호출
+                    fetchTitles(date, cell);
+
+                    day++;
+                } else {
+                    // 다음 달의 날짜를 출력
+                    const cell = row.insertCell();
+                    const nextMonthDay = day - daysInMonth;
+                    cell.innerText = nextMonthDay;
+                    cell.style.color = '#ccc';
+                    day++;
+                }
+            }
+        }
+
+        // 월간 캘린더 상단에 해당 년도와 월을 출력
+        const currentMonthLabel = document.getElementById('currentMonthLabel');
+        const monthNames = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+        currentMonthLabel.innerText = ` ${year}년 ${monthNames[month - 1]} `;
+    }
+
+    //일정 표시
+    async function fetchTitles(date, cell) {
+        try {
+            const formData = new FormData();
+            formData.append('date', date);
+
+            const response = await fetch('schedule.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const titles = await response.json();
+
+            titles.forEach(titleData => {
+                const titleLink = createTitleLink(titleData.Todo_id, titleData.Todo_title);
+                cell.appendChild(document.createElement('br')); // 각 title마다 줄바꿈 추가
+                cell.appendChild(titleLink);
+            });
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    //할 일 표시
+    function createTitleLink(id, title) {
+        const titleLinkContainer = document.createElement('div'); // 타이틀과 버튼을 감싸는 컨테이너
+        titleLinkContainer.classList.add('title-link-container');
+
+        const titleLink = document.createElement('a');
+        titleLink.href = '#';
+        titleLink.textContent = title;
+        titleLink.classList.add('title-link');
+
+        const closeButton = document.createElement('span'); // X 버튼
+        closeButton.textContent = 'x';
+        closeButton.classList.add('close-button');
+
+        // 타이틀 클릭 이벤트
+        titleLink.addEventListener('click', async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const clickedTitle = event.target.textContent;
+            const clickedId = await fetchIdFromTitle(clickedTitle);
+            if (clickedId !== null) {
+                fetchEventData(clickedId);
+            }
+        });
+
+        // X 버튼 클릭 이벤트
+        closeButton.addEventListener('click', async (event) => {
+            event.stopPropagation();
+            const clickedTitle = titleLink.textContent;
+            const clickedId = await fetchIdFromTitle(clickedTitle);
+
+            if (clickedId !== null) {
+                const formData = new FormData();
+                formData.append('todo_id', clickedId);
+
+                try {
+                    const response = await fetch('del_schedule.php', {
+                        method: 'POST',
+                        body: formData,
+                    });
+
+                    if (response.ok) {
+                        titleLinkContainer.remove(); // 타이틀과 버튼을 감싸는 컨테이너 삭제
+                        alert('이벤트가 성공적으로 삭제되었습니다.');
+
+                        // currentView 값에 따라 다른 뷰 출력
+                        if (currentView === 'monthly') {
+                            printMonthlyCalendar(currentYear, currentMonth);
+                        } else if (currentView === 'weekly') {
+                            printWeeklyCalendar(currentYear, currentMonth, currentDay);
+                        } else if (currentView === 'daily') {
+                            printDailyCalendar(currentYear, currentMonth, currentDay);
+                        }
+                    } else {
+                        throw new Error('서버 응답 실패');
+                    }
+                } catch (error) {
+                    console.error('에러 발생:', error);
+                }
+            }
+        });
+
+
+        titleLinkContainer.appendChild(titleLink);
+        titleLinkContainer.appendChild(closeButton);
+        return titleLinkContainer;
+    }
+
+    //title값을 비교해서 id값 가져오기
+    async function fetchIdFromTitle(title) {
+        // TODO: 서버로 title을 보내고 해당 title에 대응하는 id를 받아오는 로직 구현
+        // 서버와의 통신을 위해 fetch 등의 방법을 사용하여 id 값을 가져올 수 있습니다.
+        // 예: fetch를 사용하여 서버의 API 엔드포인트에 title을 전달하고, 받은 JSON 데이터에서 id를 추출
+        try {
+            const response = await fetch('get_id.php', {
+                method: 'POST',
+                body: JSON.stringify({ title }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            return data.id; // 받아온 id 반환
+        } catch (error) {
+            console.error('Error:', error);
+            return null; // 실패 시 null 반환
+        }
+    }
+
+    //해당하는 데이터 값 가져오기
+    async function fetchEventData(id) {
+        try {
+            const formData = new FormData();
+            formData.append('todo_id', id); // 클릭한 id 전달
+
+            const response = await fetch('data_load.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const eventData = await response.json();
+            openModalWithContent(eventData); // 데이터를 기반으로 모달 열기
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    // 모달을 열고 내용을 설정하는 함수
+    function openModalWithContent(content) {
+        const modal = document.getElementById('modalTemplate');
+        modal.style.display = 'block';
+
+        // 모달 내용을 가져오기 위한 변수들
+        const modalTitle = modal.querySelector('#modalTitle');
+        const modalTodoTitleInput = modal.querySelector('#modalTodoTitle');
+        const modalCalendars = modal.querySelector('.shared-feature');
+        const modalStartDate = modal.querySelector('#modalStartDate');
+        const modalEndDate = modal.querySelector('#modalEndDate');
+        const modalDescriptionTextarea = modal.querySelector('#modalDescriptionTextarea');
+        const modalDownloadLink = modal.querySelector('#modalDownloadLink'); // 파일 다운로드 링크 추가
+
+        // content에서 가져온 데이터를 모달에 설정
+        modalTitle.textContent = '일정 상세 정보';
+        modalTodoTitleInput.value = content.Todo_title;
+        modalStartDate.value = content.startDate;
+        modalEndDate.value = content.endDate;
+        modalDescriptionTextarea.value = content.description;
+
+        // 파일 다운로드 링크 설정
+        if (content.work_File) {
+            modalDownloadLink.style.display = 'block'; // 파일 다운로드 링크 보이기
+            modalDownloadLink.href = `Download.php?filename=${content.work_File}`; // 파일 다운로드 링크 설정
+            modalDownloadLink.textContent = `${content.work_File}`; // 링크 텍스트 설정
+        } else {
+            modalDownloadLink.style.display = 'none'; // 파일 다운로드 링크 숨기기
+        }
+
+        // 캘린더 목록 가져와서 설정
+        get_calendars(modalCalendars, content.cal_list);
+
+        // 모달 외부를 클릭하면 모달이 닫히도록 이벤트 핸들러 추가
+        modal.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
+
+    //콘텐츠 캘린더 모달
+    function MONTHshowModal(year, month, day) {
+        const firstNumber = parseInt(day.match(/\d+/)[0]);
+
+        var modal = document.getElementById("myModal");
+        var modalDate = document.getElementById("modalDate");
+        var title = document.getElementById("title");
+        var calendar = document.getElementById("calendar");
+        var startDate = document.getElementById("startDate");
+        var endDate = document.getElementById("endDate");
+        var type = document.getElementById("type");
+        var category = document.getElementById("category");
+        var etcCategory = document.getElementById("etcCategory");
+        var status = document.getElementById("status");
+        var highPriority = document.getElementById("highPriority");
+        var mediumPriority = document.getElementById("mediumPriority");
+        var lowPriority = document.getElementById("lowPriority");
+        var fileInput = document.getElementById("file");
+        var sender = document.getElementById("sender");
+        var members = document.getElementById("members");
+        var description = document.getElementById("description");
+        var result = document.getElementById("result");
+
+        var currentTime = new Date();
+        currentTime.setMinutes(Math.ceil(currentTime.getMinutes() / 10) * 10);
+
+        var oneHourLater = new Date(currentTime);
+        oneHourLater.setHours(oneHourLater.getHours() + 1);
+
+        const formattedDate = year + '-' + String(month).padStart(2, '0') + '-' + String(firstNumber).padStart(2, '0');
+
+        modal.style.display = "block";
+        modalDate.innerHTML = "일정 추가";
+        title.value = "";
+        calendar.value = calendar.options[0].value;
+        startDate.value = formattedDate + " " + formatTime(currentTime);
+        endDate.value = formattedDate + " " + formatTime(oneHourLater);
+        type.value = "개인";
+        category.value = "거래";
+        etcField.style.display = "none";
+        etcCategory.value = "";
+        status.value = "완료";
+        highPriority.checked = false;
+        mediumPriority.checked = false;
+        lowPriority.checked = false;
+        fileInput.value = null;
+        members.value = "";
+        description.value = "";
+
+        // 분류 선택 시
+        type.onchange = function() {
+            updateResult();
+        };
+
+        // 카테고리 선택 시
+        category.onchange = function() {
+            var category = document.getElementById("category");
+            var etcField = document.getElementById("etcField");
+            var etcCategory = document.getElementById("etcCategory");
+
+            if (category.value === "기타") {
+                etcField.style.display = "block";
+                etcCategory.required = true;
+            } else {
+                etcField.style.display = "none";
+                etcCategory.required = false;
+            }
+
+            updateResult();
+        };
+
+        // 상태 선택 시
+        status.onchange = function() {
+            updateResult();
+        };
+
+
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+    }
+
+    var etcCategory = document.getElementById("etcCategory");
+    etcCategory.addEventListener("input", updateResult);
+    // 결과 업데이트 함수
+    async function updateResult() {
+        var typeValue = document.getElementById("type").value;
+        var typeAbbreviation = typeValue === "개인" ? "G" : typeValue === "회사" ? "C" : "A";
+
+        var categoryValue = document.getElementById("category").value;
+        var categoryCode = categoryValue === "거래" ? "01" : categoryValue === "컴플레인" ? "02" : "03";
+
+        var statusValue = document.getElementById("status").value;
+        var statusCode = statusValue === "완료" ? "01" : statusValue === "보류" ? "02" : "03";
+
+        var etcCategoryValue = "";
+
+        if (categoryCode === "03") { // 카테고리 코드가 "03" (기타)인 경우에만 처리
+            etcCategoryValue = `(${etcCategory.value})`;
+        }
+
+        let result = `${typeAbbreviation}-${categoryCode}-${statusCode}${etcCategoryValue}`;
+        document.getElementById("result").value = result;
+    }
+
+    // 주간 캘린더 출력 함수
+    async function printWeeklyCalendar(year, month, day) {
+        // 캘린더 출력할 요소를 가져옴
+        const calendarOutput = document.getElementById('weeklyCalendarOutput');
+        calendarOutput.innerHTML = '';
+
+        // 주차별 날짜를 표시할 테이블 헤더 요소를 가져옴
+        const weeklyDatesRow = document.getElementById('weeklyDatesRow');
+        weeklyDatesRow.innerHTML = '<th>시간</th>';
+
+        // 주간 달력의 시작 날짜를 설정 (일요일로 설정하고 해당 주의 첫째 날짜를 구함)
+        const startDate = new Date(year, month - 1, day);
+        const startDayOfWeek = startDate.getDay();
+        startDate.setDate(startDate.getDate() - startDayOfWeek);
+
+        // 주간 달력의 테이블 헤더에 각 주차별 날짜를 표시
+        for (let i = 0; i < 7; i++) {
+            const dates = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + i);
+            const dayOfWeek = getDayOfWeek(dates.getDay());
+            const formattedDate = `${dates.getDate()}일 (${dayOfWeek})`;
+            const dateCell = document.createElement('th');
+            dateCell.innerText = formattedDate;
+            weeklyDatesRow.appendChild(dateCell);
+        }
+
+        // 현재 년도와 월, 주차 표시
+        const currentWeekLabel = document.getElementById('currentWeekLabel');
+        const endDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + 6);
+        const formattedWeekLabel = `${startDate.getFullYear()}년 ${startDate.getMonth() + 1}월 ${startDate.getDate()}일 ~ ${endDate.getFullYear()}년 ${endDate.getMonth() + 1}월 ${endDate.getDate()}일`;
+        currentWeekLabel.innerText = formattedWeekLabel;
+
+        // 시간대 표 출력 (빈 내용으로 표시)
+        const timeTable = document.getElementById('weeklyTimeTable');
+        timeTable.innerHTML = '';
+        for (let hour = 0; hour < 24; hour++) {
+            const row = timeTable.insertRow();
+            const timeCell = row.insertCell();
+            timeCell.innerText = `${hour}:00`;
+
+            // 각 시간대에 해당하는 날짜와 시간 값을 생성하고, 해당 날짜에 해당하는 title 값을 가져와서 출력
+            for (let i = 0; i < 7; i++) {
+                const cell = row.insertCell();
+
+                const date = formatDateWithTime(new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + i, hour));
+
+                WfetchTitles(date, cell); // async 함수로 호출하여 await 키워드를 사용
+            }
+        }
+    }
+
+    // JavaScript에서 PHP로 날짜와 시간에 해당하는 title 값을 가져오는 함수
+    async function WfetchTitles(date, cell) {
+        try {
+            const formData = new FormData();
+            formData.append('date', date);
+
+            const response = await fetch('HOUR_schedule.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const titles = await response.json();
+
+            titles.forEach(titleData => {
+                const titleLink = createTitleLink(titleData.Todo_id, titleData.Todo_title);
+                cell.appendChild(document.createElement('br')); // 각 title마다 줄바꿈 추가
+                cell.appendChild(titleLink);
+            });
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+
+    // 날짜를 "YYYY-MM-DD" 형식으로 변환하는 함수
+    function formatDateWithTime(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hour = String(date.getHours()).padStart(2, '0');
+        const minute = String(date.getMinutes()).padStart(2, '0');
+        return `${year}-${month}-${day} ${hour}:${minute}`;
+    }
+
+    // 일간 캘린더 출력 함수
+    function printDailyCalendar(year, month, day) {
+        // 캘린더 출력 요소를 가져옴
+        const calendarOutput = document.getElementById('dailyCalendarOutput');
+        calendarOutput.innerHTML = '';
+
+        // 날짜와 해당 요일 표시
+        const currentDateHeader = document.getElementById('currentDateHeader');
+        const dates = new Date(year, month - 1, day);
+        const dayOfWeek = getDayOfWeek(dates.getDay());
+        const formattedDate = `${year}년 ${month}월 ${day}일`;
+        currentDateHeader.innerText = `${day}일 (${dayOfWeek})`;
+
+        // 현재 날짜 표시
+        const currentDayLabel = document.getElementById('currentDayLabel');
+        currentDayLabel.innerText = formattedDate;
+
+        // 시간대 표 출력 (빈 내용으로 표시)
+        const timeTable = document.getElementById('dailyTimeTable');
+        timeTable.innerHTML = '';
+        for (let hour = 0; hour < 24; hour++) {
+            const row = timeTable.insertRow();
+            const timeCell = row.insertCell();
+            timeCell.innerText = `${hour}:00`;
+
+            // 각 시간대에 해당하는 날짜와 시간 값을 생성하고, 해당 날짜에 해당하는 title 값을 가져와서 출력
+            const dateCell = row.insertCell();
+            const date = formatDateWithTime(new Date(dates.getFullYear(), dates.getMonth(), dates.getDate(), hour));
+            WfetchTitles(date, dateCell); // async 함수로 호출하여 await 키워드를 사용
+        }
+    }
+
+    //기타 사용하는 함수
+    // 주어진 요일 번호를 한글로 변환하는 함수
+    function getDayOfWeek(dayOfWeek) {
+        const days = ['일', '월', '화', '수', '목', '금', '토'];
+        return days[dayOfWeek];
+    }
+
+    // 시간을 "HH:mm" 형식으로 변환하는 함수(사이드 바 캘린더 모달, 콘텐츠 캘린더 모달 사용)
+    function formatTime(time) {
+        var hours = String(time.getHours()).padStart(2, '0');
+        var minutes = String(time.getMinutes()).padStart(2, '0');
+        return hours + ":" + minutes;
+    }
+
+    // 월간, 주간, 일간 캘린더 버튼 코드
+    // 현재 날짜로 지정해서 해당하는 캘린더 출력
+    document.getElementById('monthlyBtn').addEventListener('click', function() {
+        currentView = "monthly";        //월간 캘린더 클릭했다는 표시
+
+        const year = new Date().getFullYear();
+        const month = new Date().getMonth() + 1;
+        currentYear = year;
+        currentMonth = month;
+        printMonthlyCalendar(year, month);
+        toggleView('monthlyView');
+    });
+
+    document.getElementById('weeklyBtn').addEventListener('click', function() {
+        currentView = "weekly";
+
+        const year = new Date().getFullYear();
+        const month = new Date().getMonth() + 1;
+        const day = new Date().getDate();
+        currentYear = year;
+        currentMonth = month;
+        currentDay = day;
+        printWeeklyCalendar(year, month, day);
+        toggleView('weeklyView');
+    });
+
+    document.getElementById('dailyBtn').addEventListener('click', function() {
+        currentView = "daily";
+
+        const year = new Date().getFullYear();
+        const month = new Date().getMonth() + 1;
+        const day = new Date().getDate();
+        currentYear = year;
+        currentMonth = month;
+        currentDay = day;
+        printDailyCalendar(year, month, day);
+        toggleView('dailyView');
+    });
+
+    // 월간 캘린더 이전 달로 이동
+    document.getElementById('prevMonthBtn').addEventListener('click', function() {
+        currentMonth--;
+        if (currentMonth < 1) {
+            currentMonth = 12;
+            currentYear--;
+        }
+        printMonthlyCalendar(currentYear, currentMonth);
+    });
+
+    // 월간 캘린더 다음 달로 이동
+    document.getElementById('nextMonthBtn').addEventListener('click', function() {
+        currentMonth++;
+        if (currentMonth > 12) {
+            currentMonth = 1;
+            currentYear++;
+        }
+        printMonthlyCalendar(currentYear, currentMonth);
+    });
+
+    // 주간 캘린더 이전 주로 이동
+    document.getElementById('prevWeekBtn').addEventListener('click', function() {
+        currentDay -= 7;
+        printWeeklyCalendar(currentYear, currentMonth, currentDay);
+    });
+
+    // 주간 캘린더 다음 주로 이동
+    document.getElementById('nextWeekBtn').addEventListener('click', function() {
+        currentDay += 7;
+        printWeeklyCalendar(currentYear, currentMonth, currentDay);
+    });
+
+    // 일간 캘린더 이전 날짜로 이동
+    document.getElementById('prevDayBtn').addEventListener('click', function() {
+        const prevDate = new Date(currentYear, currentMonth - 1, currentDay - 1);
+        currentYear = prevDate.getFullYear();
+        currentMonth = prevDate.getMonth() + 1;
+        currentDay = prevDate.getDate();
+        printDailyCalendar(currentYear, currentMonth, currentDay);
+    });
+
+    // 일간 캘린더 다음 날짜로 이동
+    document.getElementById('nextDayBtn').addEventListener('click', function() {
+        const nextDate = new Date(currentYear, currentMonth - 1, currentDay + 1);
+        currentYear = nextDate.getFullYear();
+        currentMonth = nextDate.getMonth() + 1;
+        currentDay = nextDate.getDate();
+        printDailyCalendar(currentYear, currentMonth, currentDay);
+    });
+
+    // 초기에 일간 캘린더를 보여줍니다.
+    const year = new Date().getFullYear(); // 현재 연도 가져오기
+    const month = new Date().getMonth() + 1; // 현재 월 가져오기 (월은 0부터 시작하므로 1을 더합니다.)
+    const day = new Date().getDate(); // 현재 날짜 가져오기
+
+    currentYear = year;
+    currentMonth = month;
+    currentDay = day;
+
+    printDailyCalendar(year, month, day);
+    toggleView('dailyView');
+
+    // 페이지 로드 시 캘린더 렌더링
+    window.onload = function () {
+        renderCalendar('sidebar-calendar');             //사이드바에 있는 캘린더
+        renderCalendar('calendar-content-calendar');    //콘텐츠에 해당하는 캘린더
+        fetchData();                                    //캘린더 목록
+        favorite_fetchData();                           //관심 캘린더 목록
+        get_calendars();                                //모달에 캘린더 목록 값 가져오는 코드
+    };
+
+</script>
+</body>
+</html>

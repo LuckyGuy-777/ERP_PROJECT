@@ -1,0 +1,85 @@
+/* 입력 필드 스타일 */
+input[type=text] {
+    width: 100%; /* 전체 너비로 설정 */
+    padding: 12px 20px; /* 내부 여백 설정 */
+    margin: 8px 0; /* 상하 여백 설정 */
+    display: inline-block; /* 인라인 블록 요소로 설정 */
+    border: 1px solid #ccc; /* 테두리 설정 */
+    border-radius: 4px; /* 둥근 모서리 설정 */
+    box-sizing: border-box; /* 테두리와 패딩을 함께 계산 */
+}
+
+/* 제출 버튼 스타일 */
+input[type=submit] {
+    width: 100%; /* 전체 너비로 설정 */
+    background-color: #4CAF50; /* 배경 색상 설정 */
+    color: white; /* 글자색 설정 */
+    padding: 14px 20px; /* 내부 여백 설정 */
+    margin: 8px 0; /* 상하 여백 설정 */
+    border: none; /* 테두리 없음 */
+    border-radius: 4px; /* 둥근 모서리 설정 */
+    cursor: pointer; /* 포인터 커서 설정 */
+}
+/* 제출 버튼 호버 스타일 */
+input[type=submit]:hover {
+    background-color: #45a049; /* 호버 시 배경색 변경 */
+}
+/* 전체 body 스타일 */
+body {
+    font-family: 'Open Sans', sans-serif; /* 글꼴 설정 */
+    background-color: #f4f4f4; /* 배경 색상 설정 */
+    margin: 0; /* 바깥 여백 없음 */
+    padding: 0; /* 안쪽 여백 없음 */
+}
+/* 전체 main 스타일 */
+main {
+    max-width: 900px; /* 최대 너비 설정 */
+    margin: 20px auto; /* 가운데 정렬 */
+    padding: 20px; /* 내부 여백 설정 */
+    background: #fff; /* 배경 색상 설정 */
+    border-radius: 10px; /* 둥근 모서리 설정 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+/* 폼 컨테이너 스타일 */
+.form-container {
+    margin: 20px 0; /* 상하 여백 설정 */
+}
+
+/* 폼 컨테이너 내부 제목 스타일 */
+.form-container h2 {
+    font-size: 24px; /* 글자 크기 설정 */
+    margin-bottom: 10px; /* 아래 여백 설정 */
+    color: #333; /* 글자색 설정 */
+}
+/* 폼 컨테이너 내부 문단 스타일 */
+.form-container p {
+    color: #666; /* 글자색 설정 */
+    margin-bottom: 20px; /* 아래 여백 설정 */
+}
+
+/* 폼 컨테이너 내부 폼 스타일 */
+.form-container form {
+    margin-bottom: 40px; /* 아래 여백 설정 */
+}
+/* 폼 컨테이너 내부 입력 필드 스타일 */
+.form-container input[type="text"],
+.form-container input[type="submit"] {
+    width: calc(100% - 40px); /* 전체 너비에서 여백 제외한 너비로 설정 */
+    padding: 10px 20px; /* 내부 여백 설정 */
+    margin-bottom: 10px; /* 아래 여백 설정 */
+    border: 1px solid #ddd; /* 테두리 설정 */
+    border-radius: 5px; /* 둥근 모서리 설정 */
+    box-sizing: border-box; /* 테두리와 패딩을 함께 계산 */
+}
+/* 폼 컨테이너 내부 제출 버튼 스타일 */
+.form-container input[type="submit"] {
+    background-color: #5C6BC0; /* 배경 색상 설정 */
+    color: #fff; /* 글자색 설정 */
+    font-weight: 600; /* 글자 두껍게 설정 */
+    cursor: pointer; /* 포인터 커서 설정 */
+    border: none; /* 테두리 없음 */
+}
+/* 폼 컨테이너 내부 제출 버튼 호버 스타일 */
+.form-container input[type="submit"]:hover {
+    background-color: #3F51B5; /* 호버 시 배경색 변경 */
+}

@@ -1,0 +1,176 @@
+/* 인사정보 입력 칸에서 사진 옆에 입력 폼 배치 */
+#personal-information {
+    display: flex; /* Flexbox 레이아웃 사용 */
+}
+
+/* 인사정보 개인정보 사진 */
+#left-section {
+    flex: 1; /* Flex 비율 설정 */
+    margin-right: 10px; /* 오른쪽 여백 설정 */
+}
+
+/* 인사정보 개인정보 */
+#right-section {
+    flex: 3; /* Flex 비율 설정 */
+    width: auto; /* 자동 너비 설정 */
+}
+
+/* 인사정보 입력 폼 배경 */
+#user-details {
+    margin: 0 auto; /* 가운데 정렬을 위한 마진 설정 */
+    padding: 30px; /* 내부 여백 설정 */
+    background-color: #f1f1f1; /* 배경색 설정 */
+    border-radius: 10px; /* 테두리 모서리 둥글게 설정 */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15); /* 그림자 효과 설정 */
+    overflow-y: auto; /* 세로 스크롤을 위한 오버플로우 설정 */
+    height: 100vh; /* 뷰포트 높이로 설정 */
+    width: 93%; /* 최대 너비 설정 */
+}
+
+/* 인사정보 입력 폼 */
+#user-details form {
+    display: block; /* 블록 요소로 설정 */
+    flex-direction: column; /* 세로 방향으로 요소 배치 설정 */
+    align-items: flex-start; /* 좌측 정렬 설정 */
+}
+
+/* 인사정보 라벨 */
+#user-details label {
+    font-weight: bold; /* 글꼴 두께 설정 */
+    margin-top: 5px; /* 위쪽 마진 설정 */
+    font-size: 1em; /* 글꼴 크기 설정 */
+}
+
+/* 인사정보 입력 폼 */
+#user-details input[type="text"],
+#user-details input[type="date"] {
+    margin-bottom: 5px; /* 아래쪽 마진 설정 */
+    padding: 10px; /* 내부 여백 설정 */
+    width: 95%; /* 최대 너비 설정 */
+    border-radius: 5px; /* 테두리 모서리 둥글게 설정 */
+    border: 1px solid #ddd; /* 테두리 스타일 및 색상 설정 */
+    font-size: 1em; /* 글꼴 크기 설정 */
+}
+
+/* 저장 버튼 */
+#user-details input[type="submit"] {
+    margin-top: 10px; /* 위쪽 마진 설정 */
+    padding: 15px 30px; /* 내부 여백 설정 */
+    border: none; /* 테두리 제거 */
+    border-radius: 10px; /* 테두리 모서리 둥글게 설정 */
+    background-color: #4CAF50; /* 배경색 설정 */
+    color: white; /* 글자색 설정 */
+    cursor: pointer; /* 커서 스타일 설정 */
+    font-size: 1.2em; /* 글꼴 크기 설정 */
+    width: 150px; /* 너비 설정 */
+}
+
+/* 인사정보 입력 폼에서 사진 미리보기 */
+#profile-picture-preview {
+    width: 300px; /* 너비 설정 */
+    height: 400px; /* 높이 설정 */
+    object-fit: contain; /* 이미지 유형 설정 */
+    border: 3px solid #000; /* 테두리 스타일 및 색상 설정 */
+}
+
+/* 인사정보 성별, 국적 선택 버튼 */
+.radio-container {
+    display: flex; /* Flexbox 레이아웃 사용 */
+    align-items: center; /* 아이템들을 세로 중앙 정렬 설정 */
+    margin-bottom: 10px; /* 아래쪽 마진 설정 */
+}
+
+/* 인사정보 성별, 국적 선택 버튼 */
+.radio-container input[type="radio"] {
+    display: none; /* 숨김 처리 */
+}
+
+/* 인사정보 성별, 국적 선택 버튼 라벨 */
+.radio-container label {
+    position: relative; /* 상대 위치 설정 */
+    padding-left: 35px; /* 왼쪽 여백 설정 */
+    margin-right: 15px; /* 오른쪽 마진 설정 */
+    cursor: pointer; /* 커서 스타일 설정 */
+    font-size: 1.1em; /* 글꼴 크기 설정 */
+}
+
+/* 인사정보 성별, 국적 선택 버튼 선택 전 */
+.radio-container label::before {
+    content: ""; /* 내용 없음 */
+    position: absolute; /* 절대 위치 설정 */
+    left: 0; /* 왼쪽 위치 설정 */
+    top: 0; /* 위쪽 위치 설정 */
+    width: 25px; /* 너비 설정 */
+    height: 25px; /* 높이 설정 */
+    border: 2px solid #ddd; /* 테두리 스타일 및 색상 설정 */
+    border-radius: 50%; /* 테두리 모서리 둥글게 설정 */
+    background-color: #f4f4f4; /* 배경색 설정 */
+}
+
+/* 인사정보 성별, 국적 선택 버튼 선택 후 */
+.radio-container input[type="radio"]:checked + label::before {
+    background-color: #007bff; /* 선택된 경우의 배경색 변경 */
+}
+
+/* 인사카드 이메일 */
+#email {
+    padding: 12px 20px; /* 내부 여백 설정 */
+    margin: 8px 0; /* 마진 설정 */
+    display: inline-block; /* 인라인 블록 요소로 설정 */
+    border: 1px solid #ccc; /* 테두리 스타일 및 색상 설정 */
+    border-radius: 4px; /* 테두리 모서리 둥글게 설정 */
+    box-sizing: border-box; /* 상자 크기 설정 */
+    width: auto; /* 자동 너비 설정 */
+}
+
+/* 토글되는 연락처 정보 */
+.contact-info {
+    display: grid; /* 그리드 레이아웃 사용 */
+    grid-template-columns: repeat(2, 1fr); /* 두 개의 열로 설정 */
+    gap: 20px; /* 열 간격 설정 */
+}
+
+/* 연락처 정보 안에 도로명, 지번주소 */
+.address-container {
+    display: flex; /* Flexbox 레이아웃 사용 */
+    justify-content: space-between; /* 아이템들 사이의 간격 설정 */
+}
+
+/* 연락처 정보 안에 도로명, 지번주소 조절 */
+.address-container > div {
+    flex: 1; /* Flex 비율 설정 */
+    margin-right: 5px; /* 오른쪽 마진 설정 */
+    width: 75vh; /* 최대 너비 설정 */
+}
+
+/* 연락처 정보에서 휴대폰, 전화번호 입력 칸 */
+.number-container {
+    display: flex; /* Flexbox 레이아웃 사용 */
+    justify-content: space-between; /* 아이템들 사이의 간격 설정 */
+}
+
+/* 연락처 정보 안에 도로명, 지번주소 조절 */
+.number-container div {
+    flex: 1; /* Flex 비율 설정 */
+    margin-right: 5px; /* 오른쪽 마진 설정 */
+    width: 75vh; /* 최대 너비 설정 */
+}
+
+/* 가족관계 입력 폼 */
+#family-members {
+    width: 90vh; /* 최대 너비 설정 */
+}
+
+/* 가족 멤버 컨테이너 */
+.family-member-container {
+    display: flex; /* Flexbox 레이아웃 사용 */
+    justify-content: space-between; /* 아이템들 사이의 간격 설정 */
+}
+
+/* 가족 멤버 정보, 가족 멤버 상태 */
+.family-member-info,
+.family-member-status {
+    flex: 1; /* Flex 비율 설정 */
+    display: flex; /* Flexbox 레이아웃 사용 */
+    flex-direction: column; /* 세로 방향으로 요소 배치 설정 */
+}

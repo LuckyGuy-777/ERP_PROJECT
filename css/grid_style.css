@@ -1,0 +1,213 @@
+/* 메인 컨테이너 스타일 */
+main {
+    display: flex; /* 헤더 아래 컨텐츠를 위한 flexbox 컨테이너 설정 */
+    flex-grow: 1; /* 남은 공간을 채우도록 설정 */
+    overflow: hidden; /* 넘치는 컨텐츠 숨기기 */
+}
+
+/* 그리드 컨테이너 스타일 */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; /* '이름'은 1fr, '공지사항'은 2fr, 나머지 한 열은 1fr */
+    grid-template-rows: 1fr 1fr; /* 두 행 동일 높이 */
+    width: 100%; /* 그리드 컨테이너의 너비를 100%로 설정 */
+    height: calc(100vh - 50px); /* 헤더를 제외한 전체 높이 */
+}
+
+/* 첫 번째 행의 아이템 스타일 */
+.item1 {
+    grid-column: 1 / 2; /* 첫 번째 열 */
+    grid-row: 1 / 2; /* 첫 번째 행 */
+    background-color: #90E0EF; /* 배경색 */
+}
+
+.item2 {
+    grid-column: 2 / 4; /* 두 번째 및 세 번째 열을 차지 */
+    grid-row: 1 / 2; /* 첫 번째 행 */
+    background-color: #ADE8F4; /* 배경색 */
+}
+
+/* 두 번째 행의 아이템 스타일 */
+.item3 {
+    grid-column: 1 / 2; /* 첫 번째 열 */
+    grid-row: 2 / 3; /* 두 번째 행 */
+    background-color: white;
+    width: 100%;
+}
+
+.item4 {
+    grid-column: 2 / 3; /* 두 번째 열 */
+    grid-row: 2 / 3; /* 두 번째 행 */
+    background-color: #90E0EF; /* 배경색 */
+}
+
+.item5 {
+    grid-column: 3 / 4; /* 세 번째 열 */
+    grid-row: 2 / 3; /* 두 번째 행 */
+    background-color: #CAF0F8; /* 배경색 */
+}
+
+/* 아이템 공통 스타일 */
+.item1, .item2, .item3, .item4, .item5 {
+    padding: 20px; /* 패딩 */
+    border: 1px solid #69707a; /* 테두리 */
+    overflow: auto; /* 내용이 넘치면 스크롤바 표시 */
+}
+/* 캘린더 섹션 스타일 */
+.sec_cal {
+    width: 80%; /* 섹션 너비를 80%로 설정 */
+    height: 20%; /* 섹션 높이를 20%로 설정 */
+    margin: 0 auto; /* 가운데 정렬을 위해 좌우 여백을 자동으로 설정 */
+    font-family: "NotoSansR"; /* 글꼴 설정 */
+}
+
+/* 캘린더 내비게이션 스타일 */
+.sec_cal .cal_nav {
+    display: flex; /* Flexbox 레이아웃 사용 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    font-weight: 700; /* 글꼴 두께 설정 */
+    font-size: 48px; /* 글꼴 크기 설정 */
+    line-height: 78px; /* 행 높이 설정 */
+}
+
+/* 캘린더 내비게이션의 연도-월 부분 스타일 */
+.sec_cal .cal_nav .year-month {
+    width: 300px; /* 연도-월 부분의 너비 설정 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    line-height: 1; /* 행 높이 설정 */
+}
+
+/* 캘린더 내비게이션의 좌우 화살표 부분 스타일 */
+.sec_cal .cal_nav .nav {
+    display: flex; /* Flexbox 레이아웃 사용 */
+    border: 1px solid #333333; /* 테두리 스타일 설정 */
+    border-radius: 5px; /* 테두리 모서리 둥글게 설정 */
+}
+
+.sec_cal .cal_nav .go-prev,
+.sec_cal .cal_nav .go-next {
+    display: block; /* 블록 레벨 요소로 설정 */
+    width: 50px; /* 너비 설정 */
+    height: 78px; /* 높이 설정 */
+    font-size: 0; /* 글꼴 크기 0으로 설정 (글자 숨김) */
+    display: flex; /* Flexbox 레이아웃 사용 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+.sec_cal .cal_nav .go-prev::before,
+.sec_cal .cal_nav .go-next::before {
+    content: ""; /* 가상 요소의 내용을 빈 문자열로 설정 */
+    display: block; /* 블록 레벨 요소로 설정 */
+    width: 20px; /* 너비 설정 */
+    height: 20px; /* 높이 설정 */
+    border: 3px solid #000; /* 테두리 스타일 설정 */
+    border-width: 3px 3px 0 0; /* 테두리 두께 및 모양 설정 */
+    transition: border 0.1s; /* 트랜지션 효과 설정 */
+}
+
+.sec_cal .cal_nav .go-prev:hover::before,
+.sec_cal .cal_nav .go-next:hover::before {
+    border-color: #ed2a61; /* 호버 시 테두리 색상 변경 */
+}
+
+.sec_cal .cal_nav .go-prev::before {
+    transform: rotate(-135deg); /* 왼쪽 화살표 회전 설정 */
+}
+
+.sec_cal .cal_nav .go-next::before {
+    transform: rotate(45deg); /* 오른쪽 화살표 회전 설정 */
+}
+
+/* 캘린더 랩 스타일 */
+.sec_cal .cal_wrap {
+    padding-top: 40px; /* 상단 여백 설정 */
+    position: relative; /* 상대적 위치 설정 */
+    margin: 0 auto; /* 가운데 정렬을 위해 좌우 여백을 자동으로 설정 */
+}
+
+/* 캘린더 날짜 표시 부분 스타일 */
+.sec_cal .cal_wrap .days {
+    display: flex; /* Flexbox 레이아웃 사용 */
+    margin-bottom: 20px; /* 하단 여백 설정 */
+    padding-bottom: 20px; /* 하단 여백 설정 */
+    border-bottom: 1px solid #ddd; /* 하단 테두리 설정 */
+}
+
+.sec_cal .cal_wrap::after {
+    top: 368px; /* 추가 요소 위치 설정 */
+}
+
+.sec_cal .cal_wrap .day {
+    display: flex; /* Flexbox 레이아웃 사용 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    width: calc(100% / 7); /* 7개의 열에 대한 너비 설정 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    color: #999; /* 글자색 설정 */
+    font-size: 12px; /* 글꼴 크기 설정 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    border-radius: 5px; /* 테두리 모서리 둥글게 설정 */
+}
+
+.current.today {
+    background: rgb(242 242 242); /* 현재 날짜의 배경색 설정 */
+}
+
+/* 캘린더 날짜 부분 스타일 */
+.sec_cal .cal_wrap .dates {
+    display: flex; /* Flexbox 레이아웃 사용 */
+    flex-flow: wrap; /* 요소들이 한 줄을 넘어갈 경우 다음 줄로 배치 */
+    height: 290px; /* 높이 설정 */
+}
+
+/* 캘린더 특정 열에 대한 스타일 */
+.sec_cal .cal_wrap .day:nth-child(7n -1) {
+    color: #3c6ffa; /* 특정 열의 글자색 설정 */
+}
+
+.sec_cal .cal_wrap .day:nth-child(7n) {
+    color: #ed2a61; /* 특정 열의 글자색 설정 */
+}
+
+/* 비활성화된 날짜 스타일 */
+.sec_cal .cal_wrap .day.disable {
+    color: #ddd; /* 비활성화된 날짜의 글자색 설정 */
+}
+
+.profile-picture {
+    text-align: right; /* 오른쪽 정렬 */
+    border: 2px solid black; /* 검은색 테두리 추가 */
+    padding: 10px; /* 테두리와 이미지 사이의 간격 */
+    margin: 10px; /* 주변 마진 */
+    display: block; /* 블록 레벨 요소로 만들기 */
+}
+
+/* 버튼 스타일링 */
+.button-style {
+    background-color: #4CAF50; /* 녹색 배경 */
+    color: white; /* 텍스트 색상 */
+    padding: 10px 20px; /* 패딩 */
+    margin: 10px 0; /* 마진 */
+    border: none; /* 테두리 없앰 */
+    border-radius: 4px; /* 둥근 모서리 */
+    cursor: pointer; /* 마우스 오버시 커서 변경 */
+    transition: background-color 0.3s; /* 호버 효과 */
+}
+
+.button-style:hover {
+    background-color: #45a049; /* 호버 시 색상 변경 */
+}
+
+/* 버튼 컨테이너 - 버튼들을 담을 컨테이너 */
+.buttons {
+    text-align: center; /* 중앙 정렬 */
+    margin-top: 20px; /* 상단 여백 */
+}
+
+/* 출근, 퇴근 버튼을 담은 폼에 대한 스타일링 */
+.attendance-form {
+    display: inline-block; /* 인라인 블록으로 표시 */
+    margin-right: 10px; /* 오른쪽 여백 */
+}

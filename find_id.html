@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>아이디 찾기</title>
+  <!-- 아이디찾기 폼 스타일 -->
+  <style>
+    body {
+      background-image: url(IMG/loginbg.png);
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      color: #336699;
+    }
+
+    fieldset {
+      max-width: 300px;
+      margin: 0 auto;
+      margin-top: 30px;
+      padding: 15px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      /* max-width: 400px;
+       margin: 0 auto;
+       border: 1px solid #ddd;
+       padding: 20px;
+       border-radius: 5px;
+       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+       background-color: #f9f9f9;*/
+    }
+
+    legend {
+      color: #336699;
+      font-weight: bold;
+      padding: 5px 10px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 5px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box; /* Ensure the padding is included in the width */
+      font-size: 16px; /* Set font size to improve appearance */
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #336699;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #255785;
+    }
+  </style>
+</head>
+<body>
+<h1>계정 찾기</h1>
+<!-- 사용자에게 이름과 이메일 입력 받는 폼 -->
+<fieldset>
+  <form action="find_id_process.php" method="POST">
+    <label for="user_name">이름:</label><!-- 사용자에게 이름을 받는 란 -->
+    <input type="text" id="user_name" name="user_name" title="가입하실때 입력하셨던 성함을 입력해주세요!" required><br>
+    <label for="email">이메일:</label><!-- 사용자에게 이메일을 받는 란 -->
+    <input type="email" id="email" name="email" title="가입하실때 입력하셨던 메일을 입력해주세요!" required><br>
+    <input type="submit" value="아이디 찾기">
+  </form>
+</fieldset>
+</body>
+</html>

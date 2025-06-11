@@ -1,0 +1,388 @@
+/* 로고 스타일 */
+.logo {
+    text-align: left;
+    margin-top: 1%;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 150px;
+    height: auto;
+}
+
+.top-menu {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 99%;
+    padding: 1.2%;
+    background-color: #f2f2f2;
+}
+
+.top-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.top-menu ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.top-menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+/* 사이드 메뉴바 */
+.sidebar {
+    margin-top: 1%;
+    position: fixed;
+    left: 0%;
+    width: 20%;
+    height: 100%;
+    padding: 10px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sidebar-calendar {
+    margin-bottom: 20px;
+}
+
+.sidebar-calendar table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.sidebar-calendar th {
+    border: 1px solid #ccc;
+    padding: 8px;
+    position: sticky;
+    height: 20px;
+    background-color: #f2f2f2;
+    text-align : center;
+}
+
+.sidebar-calendar td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    height: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.sidebar-calendar .current-month {
+    font-weight: bold;
+}
+
+.sidebar-calendar .other-month {
+    color: #ccc;
+}
+
+.sidebar-calendar .today {
+    background-color: #ffc;
+}
+
+/* 검색 */
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+}
+
+input:focus {
+    background-color: #ccc;
+}
+
+.search-button {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toggle-list .list-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.toggle-list .list-item .content {
+    display: none;
+}
+
+.toggle-list .list-item.active .content {
+    display: block;
+}
+
+/* 콘텐츠 영역 */
+
+.content-calendar table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.content-calendar th {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+.content-calendar td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.content-calendar th {
+    position: sticky;
+    top: 12%;
+    background-color: #f2f2f2;
+}
+
+.content-calendar td {
+    height: 100px;
+    cursor: pointer;
+}
+
+.content-calendar .current-month {
+    font-weight: bold;
+}
+
+.content-calendar .other-month {
+    color: #ccc;
+}
+
+.content-calendar .today {
+    background-color: #ffc;
+}
+
+ 년도 달 조정
+.content-calendar table {
+    margin-top: 10px;
+}
+
+.content-calendar caption {
+    position: sticky;
+    top: 7%;
+    padding: 10px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.content {
+    margin-left: 21%;
+    margin-top: 5%;
+}
+
+/* 할 일 생성 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 추가 코드 */
+/* 캘린더 안 스타일링을 위한 CSS */
+.calendar-content-calendar {
+    border: none;
+    padding: 10px;
+    width: 99%;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+.calendar-content-calendar button {
+    margin-right: 10px;
+}
+.calendar-content-calendar .view {
+    display: none;
+}
+.calendar-content-calendar .view.active {
+    display: block;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+td {
+    padding: 8px;
+    width: 100px; /* 원하는 너비로 조정 */
+    height: 100px; /* 원하는 높이로 조정 */
+    white-space: normal;
+    overflow: hidden; /* 텍스트 오버플로우를 감춤 */
+    border: 1px solid #ccc;
+    text-align: left;
+    vertical-align: top;
+}
+th {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #f2f2f2;
+}
+.week-row {
+    display: flex;
+}
+.week-day {
+    flex: 1;
+}
+/* 시간대 표 스타일 */
+.time-table {
+    margin-top: 20px;
+}
+.time-table th {
+    width: 100px;
+    background-color: #f2f2f2;
+}
+.time-table td {
+    width: 100px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+/*!* 월간 캘린더 헤더 스타일 *!*/
+table.monthly-calendar-header {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+table. monthly-calendar-header th {
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #f2f2f2;
+}
+
+/* 요일 표시 스타일 */
+table. monthly-calendar-header th {
+    font-weight: bold;
+    color: #333;
+}
+
+/* 일요일 스타일 */
+table.monthly-calendar-header th:first-child {
+    color: red;
+}
+
+/* 토요일 스타일 */
+table.monthly-calendar-header th:last-child {
+    color: blue;
+}
+
+ /*현재 날짜일 경우*/
+.current-day {
+    background-color: #fcebcb; /* 원하는 배경 색으로 대체하세요 */
+    color: #3d3d3d; /* 원하는 글씨 색으로 대체하세요 (예: 흰색) */
+}
+
+/* 스타일 시트에 모달 관련 스타일 정의 */
+.custom-modal-container {
+    display: none; /* 초기에는 모달 숨김 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+    z-index: 9999; /* 모달을 가장 위로 */
+}
+
+.custom-modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*할 일 x 버튼*/
+.title-link-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.close-button {
+    cursor: pointer;
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 16px;
+}

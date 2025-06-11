@@ -1,0 +1,22 @@
+body, h1, h2, h3, h4, p {
+  margin: 0; /* 바깥 여백 없음 */
+}
+
+textarea {
+  border: none; /* 테두리 없음 */
+  resize: none; /* 크기 조절 비활성화 */
+  outline: none; /* 포커스 효과 제거 */
+}
+
+button {
+  border: none; /* 테두리 없음 */
+  background: none; /* 배경 없음 */
+  cursor: pointer; /* 포인터 커서 설정 */
+  font: inherit; /* 상위 요소 글꼴 상속 */
+  color: inherit; /* 상위 요소 글자색 상속 */
+  padding: 0; /* 내부 여백 없음 */
+}
+
+img {
+  vertical-align: top; /* 이미지 상단 정렬 */
+}

@@ -1,0 +1,321 @@
+/* 게시판 전체 컨테이너 스타일 */
+.announcement-container {
+    width: 95%;                         /* 너비를 95%로 설정 */
+    margin: 20px auto;                  /* 자동 마진을 위아래로 20px로 설정 */
+    background-color: #fff;             /* 배경색을 흰색으로 설정 */
+    padding: 20px;                      /* 안쪽 여백을 20px로 설정 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 설정 */
+}
+/* 게시판 헤더 스타일 */
+.announcement-header {
+    background-color: #f2f2f2;          /* 배경색을 연한 회색으로 설정 */
+    padding: 10px 15px;                 /* 안쪽 여백을 위아래 10px, 좌우 15px로 설정 */
+    margin-bottom: 20px;                /* 하단 마진을 20px로 설정 */
+    font-size: 24px;                    /* 글자 크기를 24px로 설정 */
+    text-align: center;                 /* 텍스트 가운데 정렬 */
+    border-bottom: 1px solid #ddd;      /* 아래쪽 테두리를 회색으로 설정 */
+}
+
+/* 개별 공지사항 아이템 스타일 */
+.announcement-item {
+    background-color: #f9f9f9;          /* 배경색을 연한 회색으로 설정 */
+    border: 1px solid #ddd;             /* 테두리를 회색으로 설정 */
+    padding: 5px;                       /* 안쪽 여백을 5px로 설정 */
+    margin-bottom: 5px;                 /* 하단 마진을 5px로 설정 */
+    border-radius: 5px;                 /* 모서리를 5px로 둥글게 설정 */
+    height: fit-content;                /* 컨텐츠의 높이를 컨텐츠에 맞게 설정 */
+}
+
+/* 공지사항 제목 스타일 */
+.announcement-title {
+    font-size: 18px;                    /* 글자 크기를 18px로 설정 */
+    color: #333;                        /* 글자 색상을 어두운 회색으로 설정 */
+    margin: 0 0 5px 0;                  /* 상하좌우 마진을 0, 0, 5px, 0으로 설정 */
+}
+
+/* 공지사항 메타 정보 스타일 */
+.announcement-meta {
+    font-size: 14px;                    /* 글자 크기를 14px로 설정 */
+    color: #666;                        /* 글자 색상을 회색으로 설정 */
+}
+/* 검색 및 공지사항 생성 컨테이너 스타일 */
+.search-create-container {
+    display: flex;                      /* 플렉스 컨테이너로 설정 */
+    justify-content: space-between;     /* 간격을 벌리며 정렬 */
+    margin-bottom: 20px;                /* 하단 마진을 20px로 설정 */
+}
+
+/* 공지사항 생성 버튼 스타일 */
+.create-notice-button {
+    background-color: #4CAF50;          /* 배경색을 녹색으로 설정 */
+    color: white;                       /* 글자 색상을 흰색으로 설정 */
+    padding: 20px 20px;                 /* 안쪽 여백을 위아래 20px, 좌우 20px로 설정 */
+    border: none;                       /* 테두리 없음 */
+    border-radius: 5px;                 /* 모서리를 5px로 둥글게 설정 */
+    text-decoration: none;              /* 텍스트에 밑줄 없음 설정 */
+    font-size: 16px;                    /* 글자 크기를 16px로 설정 */
+    cursor: pointer;                    /* 커서를 포인터로 설정 */
+    transition: background-color 0.3s;  /* 배경색 변화에 대한 전환 효과 설정 */
+}
+
+/* 공지사항 생성 버튼 호버 스타일 */
+.create-notice-button:hover {
+    background-color: #45a049;          /* 호버 시 배경색을 더 진한 녹색으로 변경 */
+}
+
+
+/* 검색 섹션 스타일 */
+.search-section {
+    display: flex;                      /* 플렉스 컨테이너로 설정 */
+    align-items: center;                /* 아이템들을 세로 중앙 정렬 */
+}
+
+/* 검색 섹션의 선택 박스 및 입력 필드 스타일 */
+.search-section select,
+.search-section input {
+    padding: 10px;                      /* 안쪽 여백을 10px로 설정 */
+    margin-right: 10px;                 /* 우측 마진을 10px로 설정 */
+    border: 1px solid #ddd;             /* 테두리를 회색으로 설정 */
+    border-radius: 5px;                 /* 모서리를 5px로 둥글게 설정 */
+}
+
+/* 검색 섹션의 검색 버튼 스타일 */
+.search-section button {
+    padding: 10px 20px;                 /* 안쪽 여백을 위아래 10px, 좌우 20px로 설정 */
+    background-color: #008CBA;          /* 배경색을 파란색으로 설정 */
+    color: white;                       /* 글자 색상을 흰색으로 설정 */
+    border: none;                       /* 테두리 없음 */
+    border-radius: 5px;                 /* 모서리를 5px로 둥글게 설정 */
+    cursor: pointer;                    /* 커서를 포인터로 설정 */
+    transition: background-color 0.3s;  /* 배경색 변화에 대한 전환 효과 설정 */
+}
+
+/* 검색 섹션의 검색 버튼 호버 스타일 */
+.search-section button:hover {
+    background-color: #007ba7;          /* 호버 시 배경색을 더 진한 파란색으로 변경 */
+}
+
+/* 페이징 스타일 */
+.pagination {
+    display: inline-block;              /* 인라인 블록으로 설정 */
+    margin-top: 20px;                   /* 상단 마진을 20px로 설정 */
+}
+/* 페이징 링크 스타일 */
+.pagination a {
+    color: black;                       /* 글자 색상을 검정으로 설정 */
+    padding: 8px 16px;                  /* 안쪽 여백을 위아래 8px, 좌우 16px로 설정 */
+    text-decoration: none;              /* 텍스트에 밑줄 없음 설정 */
+    transition: background-color .3s;  /* 배경색 변화에 대한 전환 효과 설정 */
+    border: 1px solid #ddd;             /* 테두리를 회색으로 설정 */
+    margin: 0 4px;                      /* 좌우 마진을 0, 4px로 설정 */
+}
+
+/* 현재 활성화된 페이징 링크 스타일 */
+.pagination a.active {
+    background-color: #4CAF50;          /* 배경색을 녹색으로 설정 */
+    color: white;                       /* 글자 색상을 흰색으로 설정 */
+    border: 1px solid #4CAF50;          /* 테두리를 녹색으로 설정 */
+}
+/* 페이징 링크 호버 스타일 */
+.pagination a:hover:not(.active) {
+    background-color: #ddd;             /* 호버 시 배경색을 연한 회색으로 변경 */
+}
+
+/* 추가된 페이징 스타일 */
+.pagination-container {
+    display: flex; /* 플렉스 컨테이너 설정 */
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center; /* 세로 정렬 */
+    padding: 20px; /* 내부 여백 설정 */
+}
+
+/* 페이징 링크 스타일 */
+
+.pagination-container a {
+    margin: 0 5px; /* 좌우 여백 설정 */
+    cursor: pointer; /* 포인터 커서 설정 */
+    background: #f8f9fa; /* 배경 색상 */
+    color: #0056b3; /* 글자색 */
+    border: 1px solid #dee2e6; /* 테두리 설정 */
+    padding: 0.375rem 0.75rem; /* 내부 여백 설정 */
+    border-radius: 5px; /* 둥근 모서리 설정 */
+}
+
+/* 활성 상태 또는 호버 상태의 페이징 링크 스타일 */
+
+.pagination-container a.active,
+.pagination-container a:hover {
+    background: #007bff; /* 활성 또는 호버 시 배경색 변경 */
+    color: white; /* 글자색 변경 */
+}
+
+/* 게시글 읽기 폼 스타일 */
+
+/* 공지사항 읽기 컨테이너 스타일 */
+.announce-read {
+    width: 95%; /* 너비 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 20px; /* 내부 여백 설정 */
+    background-color: #f8f8f8; /* 배경 색상 설정 */
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* 그림자 효과 */
+}
+
+
+/* 공지사항 읽기 아이템 스타일 */
+.announce-item {
+    margin-bottom: 10px; /* 아래 여백 설정 */
+}
+
+
+/*공지사항 읽기 라벨*/
+.announce-label {
+    font-weight: bold;
+    color: #333;
+}
+
+/* 공지사항 내용 스타일 */
+.announce-content {
+    font-size: 15px; /* 글자 크기 설정 */
+    color: black; /* 글자색 설정 */
+}
+
+/* 공지사항 읽기 목록 버튼 스타일 */
+.announce-button-style {
+    background-color: #007BFF; /* 배경 색상 설정 */
+    color: white; /* 글자색 설정 */
+    border: none; /* 테두리 없음 */
+    border-radius: 5px; /* 둥근 모서리 설정 */
+    padding: 10px 20px; /* 내부 여백 설정 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    text-decoration: none; /* 텍스트에 밑줄 없음 */
+    display: inline-block; /* 인라인 블록 요소로 설정 */
+    font-size: 16px; /* 글자 크기 설정 */
+    margin: 10px 2px; /* 여백 설정 */
+    transition-duration: 0.4s; /* 호버 효과 지속 시간 설정 */
+    cursor: pointer; /* 포인터 커서 설정 */
+}
+
+/* 공지사항 읽기 목록 버튼 호버 스타일 */
+.announce-button-style:hover {
+    background-color: white; /* 호버 시 배경색 변경 */
+    color: black; /* 글자색 변경 */
+    border: 2px solid #007BFF; /* 테두리 설정 */
+}
+
+/* 글 작성 폼 스타일 */
+
+/* 공지 작성 폼 컨테이너 스타일 */
+#notice-form {
+    width: 95%; /* 너비 설정 */
+    max-width: 100%; /* 최대 너비 설정 */
+    margin: 0px auto; /* 가운데 정렬 */
+    padding: 20px; /* 내부 여백 설정 */
+    border-radius: 5px; /* 둥근 모서리 설정 */
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.06); /* 그림자 효과 */
+    background: linear-gradient(
+            to right,
+            #ece9e6,
+            #ffffff
+    ); /* 그라디언트 배경 설정 */
+}
+
+/* 공지 작성 폼 내부 폼 스타일 */
+#notice-form form {
+    display: flex; /* 플렉스 컨테이너 설정 */
+    flex-direction: column; /* 세로로 나열되도록 설정 */
+}
+/* 공지 작성 라벨 스타일 */
+#notice-form label {
+    margin-bottom: 5px; /* 아래 여백 설정 */
+    font-size: 1em; /* 글자 크기 설정 */
+    font-weight: bold; /* 글꼴 두껍게 설정 */
+    color: #333333; /* 글자색 설정 */
+}
+/* 공지사항 입력 필드 스타일 */
+#notice-form input[type="text"],
+#notice-form textarea {
+    margin-bottom: 5px; /* 아래 여백 설정 */
+    padding: 15px 20px; /* 내부 여백 설정 */
+    border: 1px solid #ccc; /* 테두리 설정 */
+    border-radius: 5px; /* 둥근 모서리 설정 */
+    font-size: 1em; /* 글자 크기 설정 */
+    outline: none; /* 외곽선 없음 */
+    width: 70%; /* 너비 설정 */
+}
+
+/* 파일 선택 필드 스타일 */
+#notice-form input[type="file"] {
+    margin-bottom: 2px; /* 아래 여백 설정 */
+    color: #45a049; /* 글자색 설정 */
+}
+
+/* 등록 버튼 스타일 */
+#notice-form input[type="submit"] {
+    cursor: pointer; /* 포인터 커서 설정 */
+    padding: 15px 20px; /* 내부 여백 설정 */
+    border: none; /* 테두리 없음 */
+    border-radius: 5px; /* 둥근 모서리 설정 */
+    font-size: 1.2em; /* 글자 크기 설정 */
+    color: #ffffff; /* 글자색 설정 */
+    background: linear-gradient(
+            to right,
+            #667eea,
+            #764ba2
+    ); /* 그라디언트 배경 설정 */
+}
+
+
+/* 등록 버튼 호버 스타일 */
+#notice-form input[type="submit"]:hover {
+    background: linear-gradient(
+            to right,
+            #764ba2,
+            #667eea
+    ); /* 호버 시 그라디언트 배경 변경 */
+}
+
+/* 폰트, 글자 크기 선택칸 스타일 */
+select {
+    width: 30%; /* 너비 설정 */
+    padding: 10px; /* 내부 여백 설정 */
+    border: 1px solid #ccc; /* 테두리 설정 */
+    border-radius: 4px; /* 둥근 모서리 설정 */
+    background-color: #f8f8f8; /* 배경 색상 설정 */
+    font-size: 1em; /* 글자 크기 설정 */
+}
+
+/* 폰트, 글자 크기 선택칸 포커스 스타일 */
+select:focus {
+    outline: none; /* 외곽선 없음 */
+    border-color: #719ECE; /* 포커스 시 테두리 색상 변경 */
+    box-shadow: 0 0 10px #719ECE; /* 포커스 시 그림자 효과 설정 */
+}
+
+
+/* 공지사항 제목 입력칸 스타일 */
+input[type=text] {
+    width: 70%; /* 너비 설정 */
+    padding: 12px 20px; /* 내부 여백 설정 */
+    margin: 8px 0; /* 여백 설정 */
+    display: inline-block; /* 인라인 블록 요소로 설정 */
+    border: 1px solid #ccc; /* 테두리 설정 */
+    border-radius: 4px; /* 둥근 모서리 설정 */
+    box-sizing: border-box; /* 테두리와 패딩을 함께 계산 */
+}
+
+/* 공지사항 등록 버튼 스타일 */
+input[type=submit] {
+    width: 50%; /* 버튼의 너비는 부모 요소의 50%로 설정됩니다. */
+    background-color: #4CAF50; /* 배경색은 색상 코드 #4CAF50으로 지정됩니다. */
+    color: white; /* 텍스트 색상은 흰색으로 설정됩니다. */
+    padding: 14px 20px; /* 안쪽 여백 설정 (위, 아래, 왼쪽, 오른쪽) */
+    margin: 8px 0; /* 바깥쪽 여백 설정 (위, 아래) */
+    border: none; /* 테두리 없음 */
+    border-radius: 4px; /* 4px 반지름의 테두리 모서리를 가진 원형 테두리 */
+    cursor: pointer; /* 커서를 포인터로 변경하여 클릭 가능한 상태를 나타냄 */
+}
+
+/* 공지사항 버튼 호버 효과 */
+input[type=submit]:hover {
+    background-color: #45a049; /* 호버 상태에서 배경색을 #45a049로 변경 */
+}
