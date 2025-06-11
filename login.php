@@ -42,7 +42,7 @@
         }
     </style>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="">
+    <!--<meta name="google-signin-client_id" content="">  사용할땐, 주석해제, content에 클라이언트아이디 삽입입--> 
 
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -95,8 +95,8 @@
 <!-- 구글로그인 -->
 <?php
 // Google API 정보 클라이언트 id, secret 삽입해서 사용용
-$clientId = '';
-$clientSecret = '';
+//$clientId = '';
+//$clientSecret = '';
 $redirectUri = 'http://wh-erp.kro.kr/login.php';
 
 // 세션 시작
