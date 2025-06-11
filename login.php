@@ -193,7 +193,7 @@ if (isset($_GET['code'])) {
 <a href="javascript:kakaoLogin();"><img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" style="width: auto;height: 60px;margin-left: 38%"></a>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
-    window.Kakao.init("ccd535b22cc3d64204a3c866f84f2832");
+    window.Kakao.init(""); // 카카오로그인API의 ,자바스크립트 키가 들어가야함
 
     function kakaoLogin() {
         window.Kakao.Auth.login({
