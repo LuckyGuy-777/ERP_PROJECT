@@ -10,7 +10,7 @@ const USER = "user";
 const SYS = "system";
 const ASSISTANT = "assistant";
 
-$open_ai_key = getenv('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');
+$open_ai_key = getenv(''); // open_ai키 삽입해서 사용용
 //https://platform.openai.com/docs/overview 에서, api 키를 생성해서, 삽입
 
 $open_ai = new OpenAi($open_ai_key);
