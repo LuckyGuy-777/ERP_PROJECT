@@ -1,6 +1,3 @@
-test
+ERP(회사관리 웹 어플리케이션 프로젝트)
 
-git repository
-
-git test
-이것은 git test 입니다
+현장실습에서 만든 작품.
